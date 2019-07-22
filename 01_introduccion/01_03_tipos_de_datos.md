@@ -80,3 +80,16 @@ Holamundo
 >>> print('Hola' + ' ' + 'mundo')
 Hola mundo
 ```
+
+## Listas
+
+Las listas es un tipo de datos en Python que permite agrupar diferentes elementos o *items*, e incluso siendo estos de diferentes tipos, como carácteres, números enteros y flotantes, cadenas de caracteres, e incluso otras listas. Se definen entre corchetes "[ ]" y sus elementos han de ir separados por una coma.
+
+```python
+>>> [1,2,3,4]
+[1, 2, 3, 4]
+>>> ['a', 'b', 'c', 'd', 'e']
+['a', 'b', 'c', 'd', 'e']
+>>> [1, 'Hola', -27, 'b', 3.14]
+[1, 'Hola', -27, 'b', 3.14]
+```
