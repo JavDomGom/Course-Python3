@@ -31,9 +31,9 @@ Se pueden realizar operaciones concatenadas más complejas. El orden correcto si
 ```
 Como se puede ver, primero ha realizado la operación de multiplicación `4*10`, que da como resultado `40`, luego la operación resta `3-2`, que da como resultado `1`, y finalmente la suma `1+40`, que da como resultado `41`.
 
-## Cadenas de carácteres
+## Cadenas de carácteres o *string*
 
-Otro tipo de datos son las cadenas de caracteres o cadenas de texto. Estas cadenas se pueden escribir dentro de unas comillas dobles (") o simples ('), por ejemplo:
+Otro tipo de datos son las cadenas de caracteres o *string*. Estas cadenas se pueden escribir dentro de unas comillas dobles (") o simples ('), por ejemplo:
 
 ```python
 >>> 'Hola mundo!'
@@ -83,13 +83,28 @@ Hola mundo
 
 ## Listas
 
-Las listas es un tipo de datos en Python que permite agrupar diferentes elementos o *items*, e incluso siendo estos de diferentes tipos, como carácteres, números enteros y flotantes, cadenas de caracteres, e incluso otras listas. Se definen entre corchetes "[ ]" y sus elementos han de ir separados por una coma.
+Las listas son un tipo de datos en Python que permite agrupar diferentes elementos o *items*, e incluso siendo estos de diferentes tipos de datos, como carácteres, números enteros y flotantes, cadenas de caracteres, e incluso otras listas. Se definen entre corchetes "[ ]" y sus elementos han de ir separados por una coma.
 
+Ejemplo de una lista en la que todos sus elementos son números enteros:
 ```python
->>> [1,2,3,4]
-[1, 2, 3, 4]
->>> ['a', 'b', 'c', 'd', 'e']
-['a', 'b', 'c', 'd', 'e']
+>>> [3, -9, 12, 1, -27]
+[3, -9, 12, 1, -27]
+```
+
+Ejemplo de lista con todos sus elementos de tipo cadena de carateres o *string*:
+```python
+>>> ['a', 'b', 'c', 'd', 'Hola']
+['a', 'b', 'c', 'd', 'Hola']
+```
+
+En este ejemplo se muestra una lista con varios tipos de datos diferentes:
+```python
 >>> [1, 'Hola', -27, 'b', 3.14]
 [1, 'Hola', -27, 'b', 3.14]
+```
+
+E incluso se puede hacer una lista en la que sus elementos sean también una lista:
+```python
+>>> [[3, -9], ['a', 'Hola'], [0.25, 3.14], [3, 'b', 15.9]]
+[[3, -9], ['a', 'Hola'], [0.25, 3.14], [3, 'b', 15.9]]
 ```
