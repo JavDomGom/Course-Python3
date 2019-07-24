@@ -1,35 +1,78 @@
 # Tipos de datos
 
-## Números enteros y flotantes (decimales)
+## Variables y constantes
 
-En Python 3 hay un tipo de datos para los números, concretamente para los números enteros y los flotantes o decimales. El intérprete de Python permite realizar con este tipo de datos cálculos simples como sumar, restar, multiplicar, dividir, operaciones módulo o potencias. Algunos ejemplos:
+En Python, como en la mayoría de lenguajes de programación, se puede asignar un tipo de dato a una variable o a una constante. Ambos son un nombre o alias que almacenará un tipo de dato en memoria durante la ejecución del programa. La diferencia técnica es que el valor de una variable puede variar durante la ejecución, sin embargo el valor de una constante no debería cambiar.
+
+Los nombres de variables en Python solo admiten caracteres alfanuméricos y el guión bajo "_", no pueden empezar por un número y se suelen escribir en minúsculas. Si el nombre de una variable se compone de varias palabras es una buena práctica separarlas por un guión bajo:
 
 ```python
->>> 1+2
+marca_de_coche = 'Tesla'
+```
+
+También se suele utilizar un sistema de escritura denominado *camel case*, en el que las palabras se escriben todas juntas y solo se escribe en mayúscula la primera letra de cada palabra, empezando siempre en minúscula:
+
+```python
+cincoNumerosPrimos = [2, 3, 5, 7, 11]
+```
+
+En cambio las constantantes se suelen escribir con todas las letras mayúsculas y si se componen de varias palabras, estas separadas por guión bajo:
+
+```python
+NUMERO_PI = 3.14159
+```
+
+A continuación veremos los diferentes tipos de datos que se le pueden asignar como valor a una variable o constante.
+
+## Números enteros y flotantes (decimales)
+
+Hay un tipo de datos para los números, concretamente para los números enteros y los flotantes o decimales. El intérprete de Python permite realizar con este tipo de datos cálculos simples como sumar, restar, multiplicar, dividir, operaciones módulo o potencias. Algunos ejemplos:
+
+```python
+>>> suma = 1+2
+>>> suma
 3
->>> 7-2
+>>> resta = 7-2
+>>> resta
 5
->>> 5-9
+>>> resta_negativa = 5-9
+>>> resta_negativa
 -4
->>> 3*4
+>>> multiplicacion = 3*4
+>>> multiplicacion
 12
->>> 0.3*4
+>>> multiplicacion_decimal = 0.3*4
+>>> multiplicacion_decimal
 1.2
->>> 28/7
+>>> division = 28/7
+>>> division
 4.0
->>> 25%5
+>>> operacion_modulo = 25%5
+>>> operacion_modulo
 0
->>> 3**2
+>>> potencia = 3**2
+>>> potencia
 9
 ```
 
 Se pueden realizar operaciones concatenadas más complejas. El orden correcto siempre será de izquierda a derecha, primero las multiplicaciones y divisiones, y luego las sumas y restas. Python se encargará de respetar el orden de los operadores automáticamente, por ejemplo:
 
 ```python
->>> 3-2+4*10
+>>> operaciones_seguidas = 3-2+4*10
+>>> operaciones_seguidas
 41
 ```
+
 Como se puede ver, primero ha realizado la operación de multiplicación `4*10`, que da como resultado `40`, luego la operación resta `3-2`, que da como resultado `1`, y finalmente la suma `1+40`, que da como resultado `41`.
+
+Y por supuesto se puede hacer operaciones con tan solo el nombre de las variables, de modo que se utilizará los valores que estas tengan almacendo en memoria.
+
+```python
+>>> numero_a = 5
+>>> numero_b = 3
+>>> numero_a * numero_b
+15
+```
 
 ## Cadenas de carácteres o *string*
 
