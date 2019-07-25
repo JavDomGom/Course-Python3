@@ -124,29 +124,58 @@ Holamundo
 Hola mundo
 ```
 
+Para trabajar más cómodamente y poder estudiar algunas de las opciones que permite realizar Python con las cadenas de texto o *strings* usaremos variables. Por ejemplo, se puede acceder fácilmente a un carácter en concreto de una cadena de carácteres, pues estos están colocados en una posición de la cadena. Accederemos a ellos mediante el uso de índices en el que se indicará la posición del carácter a mostrar, vease el siguiente ejemplo:
+
+```python
+>>> nombre = 'Javier'
+>>> nombre[0] # Carácter en la posición 0
+'J'
+>>> nombre[1] # Carácter en la posición 1
+'a'
+>>> nombre[3] # Carácter en la posición 3
+'i'
+>>> nombre[4] # Carácter en la posición 4
+'e'
+```
+
+También existen los índices negativos, por ejemplo para acceder al último carácter de la cadena sin que sea necesario conocer la posición de este:
+
+```python
+>>> nombre[-1] # Último caracter de nombre
+'r'
+>>> nombre[-2] # Penúltimo caracter de nombre
+'e'
+>>> nombre[-3] # Antepenúltimo caracter de nombre
+'i'
+```
+
 ## Listas
 
 Las listas son un tipo de datos en Python que permite agrupar diferentes elementos o *items*, e incluso siendo estos de diferentes tipos de datos, como carácteres, números enteros y flotantes, cadenas de caracteres, e incluso otras listas. Se definen entre corchetes "[ ]" y sus elementos han de ir separados por una coma.
 
 Ejemplo de una lista en la que todos sus elementos son números enteros:
+
 ```python
 >>> [3, -9, 12, 1, -27]
 [3, -9, 12, 1, -27]
 ```
 
 Ejemplo de lista con todos sus elementos de tipo cadena de carateres o *string*:
+
 ```python
 >>> ['a', 'b', 'c', 'd', 'Hola']
 ['a', 'b', 'c', 'd', 'Hola']
 ```
 
 En este ejemplo se muestra una lista con varios tipos de datos diferentes:
+
 ```python
 >>> [1, 'Hola', -27, 'b', 3.14]
 [1, 'Hola', -27, 'b', 3.14]
 ```
 
 E incluso se puede hacer una lista en la que sus elementos sean también una lista:
+
 ```python
 >>> [[3, -9], ['a', 'Hola'], [0.25, 3.14], [3, 'b', 15.9]]
 [[3, -9], ['a', 'Hola'], [0.25, 3.14], [3, 'b', 15.9]]
