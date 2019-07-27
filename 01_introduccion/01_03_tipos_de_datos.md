@@ -124,10 +124,21 @@ Holamundo
 Hola mundo
 ```
 
-Para trabajar más cómodamente y poder estudiar algunas de las opciones que permite realizar Python con las cadenas de texto o *strings* usaremos variables. Por ejemplo, se puede acceder fácilmente a un carácter en concreto de una cadena de carácteres, pues estos están colocados en una posición de la cadena. Accederemos a ellos mediante el uso de índices en el que se indicará la posición del carácter a mostrar, vease el siguiente ejemplo:
+Para trabajar más cómodamente y poder estudiar algunas de las opciones que permite realizar Python con las cadenas de texto o *strings* usaremos variables. Por ejemplo, se puede acceder fácilmente a un carácter en concreto de una cadena de carácteres, pues estos están colocados en una posición de la cadena. En este ejemplo la variable `nombre` contiene como valor una cadena de carácteres ordenados mediante el siguiente índice:
 
 ```python
 >>> nombre = 'Javier'
+```
+
+```
+ J   a   v   i   e   r
+ |   |   |   |   |   |
+[0] [1] [2] [3] [4] [5]
+```
+
+Accederemos a ellos mediante el uso de índices en el que se indicará la posición del carácter a mostrar, vease el siguiente ejemplo:
+
+```python
 >>> nombre[0] # Carácter en la posición 0
 'J'
 >>> nombre[1] # Carácter en la posición 1
@@ -138,7 +149,7 @@ Para trabajar más cómodamente y poder estudiar algunas de las opciones que per
 'e'
 ```
 
-También existen los índices negativos, por ejemplo para acceder al último carácter de la cadena sin que sea necesario conocer la posición de este:
+También existen los índices negativos, por ejemplo para acceder al último carácter de la cadena sin que sea necesario conocer la posición del mismo:
 
 ```python
 >>> nombre[-1] # Último caracter de nombre
@@ -148,6 +159,84 @@ También existen los índices negativos, por ejemplo para acceder al último car
 >>> nombre[-3] # Antepenúltimo caracter de nombre
 'i'
 ```
+
+También existe la posibilidad de extraer porciones de cadenas de texto, se consigue mediante una opción de los índices llamada *slicing*, en la que se ha de indicar dentro de los corchetes una pusición de inicio, seguido del símbolo de dos puntos ":" y una posición de final. Por ejemplo, para extraer solo los tres primeros carácteres de la variable `nombre` de ha inidicar la posición `0`, que es la primera, dos puntos `:` y el carácter en el que queremos que se pare y no muestre, en este caso es el cuarto carácter, es decir la posición `3`:
+
+```python
+>>> nombre[0:3]
+'Jav'
+```
+
+Como se puede ver, el último caracter indicado, en el ejemplo anterior el `3`, nunca se incluye. Pero si queremos incluír el último caracter bastaría con no indicar nada, en este otro ejemplo se puede ver cómo extraer los carácteres desde el tercero hasta el último, incluyéndolo:
+
+```python
+>>> nombre[2:]
+'vier'
+```
+
+Y también se puede no indicar ningún caracter de inicio, por ejemplo, para mostrar desde el inicio de la cadena hasta el tercer carácter:
+
+```python
+>>> nombre[:2]
+'Ja'
+```
+
+O bien todos los elementos de la cadena menos el último o los dos últimos:
+
+```python
+>>> nombre[:-1]
+'Javie'
+>>> nombre[:-2]
+'Javi'
+```
+
+La variable `nombre` contiene una cadena de 6 carácteres, eso es un índice que va desde el `0` hasta el `5`, pero ¿Qué sucederá si indicamos índices mayores de los disponibles? Por ejemplo, desde el índice `21` hasta el final
+
+```python
+>>> nombre[21:]
+''
+```
+
+En este caso no muestra nada, pues no existe nada desde la posición `21` del índice hasta un final. Pero y ¿si indicamos que nos muestre desde el inicio de la cadena hasta la posición `21`?
+
+```python
+>>> nombre[:21]
+'Javier'
+```
+
+En este otro caso mostrará toda la cadena, pues a pesar de que el índice no tiene `21` posiciones muestra todas las disponibles.
+
+Ahora que ya se conoce el funcionamiento de las cadenas de carácteres y el acceso a cada elemento de la cadena mediante índices, es posible que el alumno s epregunte si es posible modificar el valor de algun elemento de la cadena de carácteres. Para el tipo de dato *string* o cadena de carácteres no es posible hacerlo directamente, véase un ejemplo y el error que devuelve:
+
+```python
+>>> nombre[0] = 'X'
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'str' object does not support item assignment
+```
+
+Como se puede ver, el error es claro, indica que para el tipo de dato `str` (*string*) no es posible la asignación de valores a un *item* o elemento de la cadena. Pero si queremos modificar solo el primer carácter de la cadena `'J'` por el carácter `'X'` es posible mediante la siguiente operación:
+
+```python
+>>> nombre = 'X' + nombre[1:]
+>>> nombre
+'Xavier'
+```
+
+Lo que ha sucedido es que se ha reasignado un valor completo a la variable `nombre`. En este caso hemos indicado que el nuevo valor será el carácter `'X'` seguido de todos los carácteres que tiene la variable `nombre` antes de la reasignación de valor, pero solo desde el segundo carácter hasta el final, es decir el índice con *slice* `[1:]`.
+
+El tipo de datos *string* o cadena de carácteres permite utilizar una función de Python llamada `len()` a la que se le debe indicar entre los paréntesis la cadena de carácteres, de modo que devuelve la longitud en número de carácteres. Vease algunos ejemplos:
+
+```python
+>>> nombre = 'Javier'
+>>> apellidos = 'Domínguez'
+>>> len(nombre)
+6
+>>> len(apellidos)
+9
+```
+
+La función `len()` no está disponible para todos los tipos de datos, más adelante veremos en qué otras ocasiones se puede utlizar.
 
 ## Listas
 
