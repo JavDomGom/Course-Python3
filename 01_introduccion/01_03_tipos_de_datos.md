@@ -245,27 +245,39 @@ Las listas son un tipo de datos en Python que permite agrupar diferentes element
 Ejemplo de una lista en la que todos sus elementos son números enteros:
 
 ```python
->>> [3, -9, 12, 1, -27]
+>>> numeros = [3, -9, 12, 1, -27]
+>>> numeros
 [3, -9, 12, 1, -27]
 ```
 
 Ejemplo de lista con todos sus elementos de tipo cadena de carateres o *string*:
 
 ```python
->>> ['a', 'b', 'c', 'd', 'Hola']
+>>> caracteres = ['a', 'b', 'c', 'd', 'Hola']
+>>> caracteres
 ['a', 'b', 'c', 'd', 'Hola']
 ```
 
 En este ejemplo se muestra una lista con varios tipos de datos diferentes:
 
 ```python
->>> [1, 'Hola', -27, 'b', 3.14]
+>>> lista_variada = [1, 'Hola', -27, 'b', 3.14]
+>>> lista_variada
 [1, 'Hola', -27, 'b', 3.14]
 ```
 
 E incluso se puede hacer una lista en la que sus elementos sean también una lista:
 
 ```python
->>> [[3, -9], ['a', 'Hola'], [0.25, 3.14], [3, 'b', 15.9]]
+>>> lista_de_listas = [[3, -9], ['a', 'Hola'], [0.25, 3.14], [3, 'b', 15.9]]
+>>> lista_de_listas
 [[3, -9], ['a', 'Hola'], [0.25, 3.14], [3, 'b', 15.9]]
+```
+
+Al igual que en el tipo de datos *string* o cadenas de carácteres también se puede acceder a cada elemento de una lista indicando la posición del elemento mediante un índice. Por ejemplo, para mostrar el primer elemento de la una lista basta con indicar el índice `[0]`, vçease el ejemplo:
+
+```python
+>>> letras = ['a', 'b', 'c', 'd', 'e']
+>>> letras[0]
+'a'
 ```
