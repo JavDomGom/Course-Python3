@@ -240,7 +240,7 @@ La función `len()` no está disponible para todos los tipos de datos, más adel
 
 ## Listas
 
-Las listas son un tipo de datos en Python que permite agrupar diferentes elementos o *items*, e incluso siendo estos de diferentes tipos de datos, como carácteres, números enteros y flotantes, cadenas de caracteres, e incluso otras listas. Se definen entre corchetes "[ ]" y sus elementos han de ir separados por una coma.
+Las listas son un tipo de datos en Python que permite agrupar diferentes elementos o *items*, e incluso siendo estos de diferentes tipos de datos, como carácteres, números enteros y flotantes, cadenas de caracteres, e incluso otras listas. Se definen entre corchetes "`[ ]`" y sus elementos han de ir separados por una coma.
 
 Ejemplo de una lista en la que todos sus elementos son números enteros:
 
@@ -274,10 +274,40 @@ E incluso se puede hacer una lista en la que sus elementos sean también una lis
 [[3, -9], ['a', 'Hola'], [0.25, 3.14], [3, 'b', 15.9]]
 ```
 
-Al igual que en el tipo de datos *string* o cadenas de carácteres también se puede acceder a cada elemento de una lista indicando la posición del elemento mediante un índice. Por ejemplo, para mostrar el primer elemento de la una lista basta con indicar el índice `[0]`, vçease el ejemplo:
+Al igual que en el tipo de datos *string* o cadenas de carácteres también se puede acceder a cada elemento de una lista indicando la posición del elemento mediante un índice. Por ejemplo, para mostrar el primer elemento de la una lista basta con indicar el índice `[0]`, véase el ejemplo:
 
 ```python
 >>> letras = ['a', 'b', 'c', 'd', 'e']
 >>> letras[0]
 'a'
 ```
+
+Para mostrar toda la lista menos el último elemento:
+
+```python
+>>> letras[:-1]
+['a', 'b', 'c', 'd']
+```
+
+O bien toda la lista menos los dos últimos elementos:
+
+```python
+>>> letras[:-2]
+['a', 'b', 'c']
+```
+
+También los elementos que van desde el tercero hasta el final:
+
+```python
+>>> letras[2:]
+['c', 'd', 'e']
+```
+
+O los elementos que van desde el segundo hasta el cuarto (el elemento indicado en el final del *slice* no se muestra):
+
+```python
+>>> letras[1:4]
+['b', 'c', 'd']
+```
+
+Como se puede ver, el comportamiento del *slicing* es exactamente el mismo que cuando lo usábamos en las cadenas de carácteres.
