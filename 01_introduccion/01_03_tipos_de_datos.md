@@ -266,7 +266,7 @@ En este ejemplo se muestra una lista con varios tipos de datos diferentes:
 [1, 'Hola', -27, 'b', 3.14]
 ```
 
-E incluso se puede hacer una lista en la que sus elementos sean también una lista:
+E incluso se puede hacer una lista en la que sus elementos sean también listas, esto se conoce como listas anidadas:
 
 ```python
 >>> lista_de_listas = [[3, -9], ['a', 'Hola'], [0.25, 3.14], [3, 'b', 15.9]]
@@ -310,4 +310,129 @@ O los elementos que van desde el segundo hasta el cuarto (el elemento indicado e
 ['b', 'c', 'd']
 ```
 
-Como se puede ver, el comportamiento del *slicing* es exactamente el mismo que cuando lo usábamos en las cadenas de carácteres.
+Como se puede ver, el comportamiento del *slicing* es exactamente el mismo que cuando lo usábamos en las cadenas de carácteres. Otra característica de las listas es que permite unir varias listas con el operador suma `+`, por ejemplo:
+
+```python
+>>> lista_1 = ['a', 'b', 'c']
+>>> lista_2 = ['d', 'e', 'f']
+>>> lista_1 + lista_2
+['a', 'b', 'c', 'd', 'e', 'f']
+```
+
+También admite el operador multiplicación `*` para multiplicar elementos de una lista:
+
+```python
+>>> lista = ['Hola'] * 3
+>>> lista
+['Hola', 'Hola', 'Hola']
+```
+```python
+>>> lista = ['a', 'b', 'c'] * 4
+>>> lista
+['a', 'b', 'c', 'a', 'b', 'c', 'a', 'b', 'c', 'a', 'b', 'c']
+```
+
+Anteriormente vimos cómo acceder a una posición del índice en una cadena de carácteres, y vimos que no era posible modificar un elemento de la cadena de carácteres mediante la reasignación de valor a su índice. En el caso de las listas si es posible, por ejemplo:
+
+```python
+>>> pares = [0, 2, 5, 6, 8]
+>>> pares[2] = 4
+>>> pares
+[0, 2, 4, 6, 8]
+```
+
+También se pueden modificar varios elementos de la lista mediante un *slicing*, en este caso queremos cambiar las 3 primeras letras de una lista de letras:
+
+```python
+>>> letras = ['a', 'b', 'c', 'd', 'e', 'f']
+>>> letras[:3]
+['a', 'b', 'c']
+>>> letras[:3] = ['A', 'B', 'C']
+>>> letras
+['A', 'B', 'C', 'd', 'e', 'f']
+```
+
+Todos los elementos de una lista tienen un orden, al que se puede acceder mediente índices tal y como ya hemos visto. Para añadir nuevos elementos a la lista existe un método `append()` que nos permite incorporar nuevos elementos al final de la lista, por ejempo:
+
+```python
+>>> frutas = ['fresa', 'pera', 'uva']
+>>> frutas.append('manzana')
+>>> frutas
+['fresa', 'pera', 'uva', 'manzana']
+```
+
+Para eliminar varios elementos de una lista se puede hacer dasignándole un valor de lista vacía "`[]`" a un rango de elementos mediante *slicing*, por ejemplo, si queremos eliminar los pres primeros elementos de la lista:
+
+```python
+>>> letras = ['a', 'b', 'c', 'd', 'e', 'f']
+>>> letras[:3] = []
+>>> letras
+['d', 'e', 'f']
+```
+
+En caso de que queramos borrar todos los elemento de la lista basta con reasignar el valor de la lista con una lista vacía:
+
+```python
+>>> letras = ['a', 'b', 'c', 'd', 'e', 'f']
+>>> letras = []
+>>> letras
+[]
+```
+
+Si lo que se quiere es borrar un elemento concreto se puede hacer utilizando la instrucción `del` (*delete*) de la siguiente manera:
+
+```python
+>>> letras = ['a', 'b', 'c', 'd', 'e', 'f']
+>>> del letras[2]
+>>> letras
+['a', 'b', 'd', 'e', 'f']
+```
+
+En este caso se ha eliminado el tercer elemento de la lista, es decir, el carácter `'c'`. Esta instrucción `del` también permite eliminar varios elementos mediante *slicing*, por ejemplo, para eliminar el tercer y cuarto elemento de la lista:
+
+```python
+>>> letras = ['a', 'b', 'c', 'd', 'e', 'f']
+>>> del letras[2:4]
+>>> letras
+['a', 'b', 'e', 'f']
+```
+
+Las listas en Python también pueden utilizar la función `len()`, esta devolverá el tamaño de la lista, es decir, el número de elementos que tiene, véase el ejemplo:
+
+```python
+>>> lista = ['Dennis', 'Ken', 'Richard']
+>>> len(lista)
+3
+```
+
+Volvamos a las listas anidadas, es decir, aquellas listas que sus elementos son a su vez otras listas. Veamos cómo se pueden construír y cómo se puede acceder a sus datos mediante múltiples índices, por ejemplo:
+
+```python
+>>> lista_1 = [0, 1, 2]
+>>> lista_2 = [3, 4, 5]
+>>> lista_3 = [6, 7, 8]
+>>> lista_anidada = [lista_1, lista_2, lista_3]
+>>> lista_anidada
+[[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+```
+
+Para acceder al primer elemento de `lista_anidada` basta con indicar el índice `[0]`.
+
+```python
+>>> lista_anidada[0]
+[0, 1, 2]
+```
+
+Pero para acceder a uno de los elementos de este primer elemento de la lista `lista_anidada` se ha de indicar un segundo índice, donde se indicará la posición del elemento a que se quiere acceder, por ejemplo, para acceder al primer elemento de la primera lista:
+
+```python
+>>> lista_anidada[0][0]
+0
+```
+
+Y para acceder al primer elemento de la segunda lista:
+
+```python
+>>> lista_anidada[1][0]
+3
+```
