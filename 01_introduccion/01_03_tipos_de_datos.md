@@ -240,7 +240,7 @@ La función `len()` no está disponible para todos los tipos de datos, más adel
 
 ## Listas
 
-Las listas son un tipo de datos en Python que permite agrupar diferentes elementos o *items*, e incluso siendo estos de diferentes tipos de datos, como carácteres, números enteros y flotantes, cadenas de caracteres, e incluso otras listas. Se definen entre corchetes "`[ ]`" y sus elementos han de ir separados por una coma.
+Las listas son un tipo de datos en Python que permite agrupar diferentes elementos o *items*, e incluso siendo estos de diferentes tipos de datos, como carácteres, números enteros y flotantes, cadenas de caracteres, e incluso otras listas. Se definen entre corchetes "`[]`" y sus elementos han de ir separados por una coma.
 
 Ejemplo de una lista en la que todos sus elementos son números enteros:
 
@@ -397,14 +397,6 @@ En este caso se ha eliminado el tercer elemento de la lista, es decir, el carác
 ['a', 'b', 'e', 'f']
 ```
 
-Las listas en Python también pueden utilizar la función `len()`, esta devolverá el tamaño de la lista, es decir, el número de elementos que tiene, véase el ejemplo:
-
-```python
->>> lista = ['Dennis', 'Ken', 'Richard']
->>> len(lista)
-3
-```
-
 Volvamos a las listas anidadas, es decir, aquellas listas que sus elementos son a su vez otras listas. Veamos cómo se pueden construír y cómo se puede acceder a sus datos mediante múltiples índices, por ejemplo:
 
 ```python
@@ -435,4 +427,73 @@ Y para acceder al primer elemento de la segunda lista:
 ```python
 >>> lista_anidada[1][0]
 3
+```
+
+A continuación veremos algunos de los métodos que se pueden utilizar con las listas. Por ejepmplo, el método `len()` devolverá el tamaño de la lista, es decir, el número de elementos que tiene, véase el ejemplo:
+
+```python
+>>> lista = ['Dennis', 'Ken', 'Richard']
+>>> len(lista)
+3
+```
+
+El método `count()` devolverá el número de veces que existe un elemento dentro de una lista, por ejemplo:
+
+```python
+>>> mascotas = ['perro', 'gato', 'canario', 'gato', 'hurón']
+>>> mascotas.count('gato')
+2
+```
+
+El método `index()` devuelve el índice menor en el que se encuentra un elemento dentro de una lista, por ejemplo:
+
+```python
+>>> mascotas = ['perro', 'gato', 'canario', 'gato', 'hurón']
+>>> mascotas.index('gato')
+1
+>>> mascotas.index('hurón')
+4
+```
+
+El método `insert()` permite añadir un nuevo elemento a una lista, y además permite hacerlo en la posición del índice que le especifiquemos. Lo que sucederá con el resto de elementos que se encontraban en esa posición del índice en adelante es desplazarlos, véase el ejemplo en el que se añade una nueva mascota en la cuarta posición del índice:
+
+```python
+>>> mascotas.insert(3, 'iguana')
+>>> mascotas
+['perro', 'gato', 'canario', 'iguana', 'gato', 'hurón']
+```
+
+El método `pop()` elimina y devuelve un elemento de la lista. Si no se le pasa ningún argumento tendrá en cuenta el último elemento de la lista, y si se indica una posición del índice lo hará con el elemento indicado, véase el ejemplo:
+
+```python
+>>> mascotas.pop()
+'hurón'
+>>> mascotas
+['perro', 'gato', 'canario', 'iguana', 'gato']
+>>> mascotas.pop(1)
+'gato'
+>>> mascotas
+['perro', 'canario', 'iguana', 'gato']
+```
+
+El método `reverse()` invertirá el orden de los elementos de una lista según su índice, por ejemplo:
+
+```python
+>>> mascotas
+['perro', 'canario', 'iguana', 'gato']
+>>> mascotas.reverse()
+>>> mascotas
+['gato', 'iguana', 'canario', 'perro']
+```
+
+El método `sort()` ordenará los elementos de una lista, de mayor a menor o alfabéticamente, por ejemplo:
+
+```python
+>>> mascotas.sort()
+>>> mascotas
+['canario', 'gato', 'iguana', 'perro']
+>>> numeros = [23, 48, 5, 19, 71, 9]
+>>> numeros.sort()
+>>> numeros
+[5, 9, 19, 23, 48, 71]
 ```
