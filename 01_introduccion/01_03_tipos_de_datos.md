@@ -310,29 +310,7 @@ O los elementos que van desde el segundo hasta el cuarto (el elemento indicado e
 ['b', 'c', 'd']
 ```
 
-Como se puede ver, el comportamiento del *slicing* es exactamente el mismo que cuando lo usábamos en las cadenas de carácteres. Otra característica de las listas es que permite unir varias listas con el operador suma `+`, por ejemplo:
-
-```python
->>> lista_1 = ['a', 'b', 'c']
->>> lista_2 = ['d', 'e', 'f']
->>> lista_1 + lista_2
-['a', 'b', 'c', 'd', 'e', 'f']
-```
-
-También admite el operador multiplicación `*` para multiplicar elementos de una lista:
-
-```python
->>> lista = ['Hola'] * 3
->>> lista
-['Hola', 'Hola', 'Hola']
-```
-```python
->>> lista = ['a', 'b', 'c'] * 4
->>> lista
-['a', 'b', 'c', 'a', 'b', 'c', 'a', 'b', 'c', 'a', 'b', 'c']
-```
-
-Anteriormente vimos cómo acceder a una posición del índice en una cadena de carácteres, y vimos que no era posible modificar un elemento de la cadena de carácteres mediante la reasignación de valor a su índice. En el caso de las listas si es posible, por ejemplo:
+Como se puede ver, el comportamiento del *slicing* es exactamente el mismo que cuando lo usábamos en las cadenas de carácteres. Anteriormente vimos cómo acceder a una posición del índice en una cadena de carácteres, y vimos que no era posible modificar un elemento de la cadena de carácteres mediante la reasignación de valor a su índice. En el caso de las listas si es posible, por ejemplo:
 
 ```python
 >>> pares = [0, 2, 5, 6, 8]
@@ -496,4 +474,60 @@ El método `sort()` ordenará los elementos de una lista, de mayor a menor o alf
 >>> numeros.sort()
 >>> numeros
 [5, 9, 19, 23, 48, 71]
+```
+
+A continuación se exlicarán algunas operaciones básicas que se pueden realizar con las listas. Por ejemplo, se pueden sumar varias listas con el operador suma `+`:
+
+```python
+>>> lista_1 = ['a', 'b', 'c']
+>>> lista_2 = ['d', 'e', 'f']
+>>> lista_1 + lista_2
+['a', 'b', 'c', 'd', 'e', 'f']
+```
+
+También admite el operador multiplicación `*` para multiplicar elementos de una lista:
+
+```python
+>>> lista = ['Hola'] * 3
+>>> lista
+['Hola', 'Hola', 'Hola']
+```
+```python
+>>> lista = ['a', 'b', 'c'] * 4
+>>> lista
+['a', 'b', 'c', 'a', 'b', 'c', 'a', 'b', 'c', 'a', 'b', 'c']
+```
+
+También permite averiguar si un elemento existe dentro de una lista mediante el uso de `in`, véase el ejemplo:
+
+```python
+>>> lista = ['rojo', 'verde', 'morado']
+>>> 'verde' in lista
+True
+>>> 'azul' in lista
+False
+```
+
+Y cómo no, podemos realizar iteraciones con los elementos de una lista, por ejemplo:
+
+```python
+>>> animales = ['perro', 'gato', 'pez', 'iguana', 'hurón']
+>>> for animal in animales: print(animal)
+...
+perro
+gato
+pez
+iguana
+hurón
+```
+
+## Operadores y expresiones
+
+### Operadores lógicos
+
+```python
+>>> 2 + 3 == 7
+False
+>>> 7 - 2 == 5
+True
 ```
