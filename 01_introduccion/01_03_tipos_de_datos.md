@@ -618,5 +618,38 @@ True
 
 ### Operadores lógicos
 
+La Lógica es una rama de la matemática que sirve para modelizar un problema, proporcionar su solución y nos ayuda a saber si esa solución es verdadera o falsa. En lógica existen conectivas u operadores como en las matemáticas, pero en este caso se llaman de otra manera y evalúan los enunciados o proposiciones de ambos lados de forma distinta. En Python, los dos operadores lógicos principales son la conjunción `and` (símbolo en lógica `∧`) y la diyunción `or` (símbolo en lógica `∨`). Para saber qué valor se obtiene como resultado al utilizar cualquiera de los dos entre dos predicados se puede consultar la siguiente tabla de la verdad:
+
+![alt Tabla de la verdad](../img/01_tabla_de_la_verdad.png)
+
+Véase algunos ejemplos:
+
+```python
+>>> p = True
+>>> q = False
+>>> p and q
+False
+>>> p or q
+True
+```
+
+No solo podremos hacer operaciones lógicas con los valores `True` y `False`, también podremos hacerlo con expresiones algebráicas o comparaciones que terminarán devolviendo un valor booleano igualmente, por ejemplo:
+
+```python
+>>> 3 + 3 > 2
+True
+>>> 3 + 3 > 27
+False
+```
+
+Existen varios tipos de operadores lógicos, a continuación veremos lo smás utilizados. Por ejemplo, el operador `not`. Es una negación lógica, es decir, un valor booleano (`True` o `False`) lo convierte en el contrario, véase el ejemplo:
+
+```python
+>>> not True
+False
+>>> not False
+True
+```
+
 
 
