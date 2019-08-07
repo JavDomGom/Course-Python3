@@ -137,7 +137,7 @@ True
 
 En este ejemplo `'Hola'` sigue sin ser igual a la cadena `'hola'`, pero al menos el segundo predicado es verdadero, pues el carácter `'b'` no es igual que el carácter `'f'`, por lo tanto se obtiene un resultado `True`.
 
-Existen varios tipos de operadores lógicos, a continuación veremos lo smás utilizados. Por ejemplo, el operador `not`. Es una negación lógica, es decir, un valor booleano (`True` o `False`) lo convierte en el contrario, véase el ejemplo:
+Además de los operadores `and`y `or`también existe el operador `not`. Es una negación lógica o un inversor, es decir, a un valor booleano (`True` o `False`) lo convierte en el contrario, véase el ejemplo:
 
 ```python
 >>> not True
