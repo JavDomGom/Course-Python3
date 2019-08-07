@@ -119,6 +119,24 @@ True
 False
 ```
 
+También con datosde tipo `string` o cadena de carácteres:
+
+```python
+>>> 'Hola' == 'hola' and 'b' != 'f'
+False
+```
+
+En este caso el resultado es `False` ya que en una conjunción `and` para que el resultado sea `True` ambos predicados deben ser verdaderos, y en este ejemplo la cadena `'Hola'` no es igual a la cadena `'hola'`, ya que una comienza por mayúscula y la otra por minúscula.
+
+En el caso de la disyunción `or` basta con que uno de los dos predicados sea verdadero para que el resultado sea `True`, véase el siguiente ejemplo.
+
+```python
+>>> 'Hola' == 'hola' or 'b' != 'f'
+True
+```
+
+En este ejemplo `'Hola'` sigue sin ser igual a la cadena `'hola'`, pero al menos el segundo predicado es verdadero, pues el carácter `'b'` no es igual que el carácter `'f'`, por lo tanto se obtiene un resultado `True`.
+
 Existen varios tipos de operadores lógicos, a continuación veremos lo smás utilizados. Por ejemplo, el operador `not`. Es una negación lógica, es decir, un valor booleano (`True` o `False`) lo convierte en el contrario, véase el ejemplo:
 
 ```python
