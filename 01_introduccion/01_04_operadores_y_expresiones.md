@@ -128,6 +128,14 @@ False
 
 En este caso el resultado es `False` ya que en una conjunción `and` para que el resultado sea `True` ambos predicados deben ser verdaderos, y en este ejemplo la cadena `'Hola'` no es igual a la cadena `'hola'`, ya que una comienza por mayúscula y la otra por minúscula.
 
+También podemos comprobar si una cadena de caracteres tiene una longitud concreta y si esta comienza por una letra determinada, véase el ejemplo:
+
+```python
+>>> cadena = 'Hola'
+>>> len(cadena) >= 4 and cadena[0] == 'H'
+True
+```
+
 En el caso de la disyunción `or` basta con que uno de los dos predicados sea verdadero para que el resultado sea `True`, véase el siguiente ejemplo.
 
 ```python
@@ -145,3 +153,7 @@ False
 >>> not False
 True
 ```
+
+## Expresiones anidadas
+
+Podemos combinar conjunciones `and` y disyunciones `or`,pero para elo es importante conocer las normas de precedencia en estos casos de expresiones combinadas o anidadas.
