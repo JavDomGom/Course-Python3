@@ -156,4 +156,11 @@ True
 
 ## Expresiones anidadas
 
-Podemos combinar conjunciones `and` y disyunciones `or`,pero para elo es importante conocer las normas de precedencia en estos casos de expresiones combinadas o anidadas.
+Podemos combinar los diferentes operadores que ya hemos visto, tales como el operador sua `+`, resta `-`, multiplicación `*`, división `/`, módulo `%` o potencias `**` y podemos combianrlos con los demás operadores relacionales como `<`, `>`, `<=`, `>=`, `==` o `!=`, los operadores lógicos como las conjunciones `and` y disyunciones `or`, e incluso podemos englobar algunas de ellas entre paréntesis `()`, pero para realizar las operaciones correctamente es importante conocer las normas de precedencia en estos casos de expresiones combinadas o anidadas. Véase el siguiente ejemplo en el que se mezclan diferentes expresiones:
+
+```python
+>>> a = 3
+>>> b = 5
+>>> a * b - 2**b >= 20 and not (a % b) != 0
+False
+```
