@@ -354,7 +354,9 @@ Tambien hay un operador de asignación llamado módulo en asignación, se escrib
 1
 ```
 
-Y por último tenemos el operador de asignación llamado potencia en asignación, se escribe `**=` y funciona de la siguiente manera:
+El primer resultado es `1`, ya que es el resto de dividir `29` entre `2`, así pues, el nuevo valor de la variable `e` pasa a ser `1`. En el segundo cálculo el resultado vuelve a ser `1`, ya que es el resto de dividir `1` entre `2`.
+
+Por último tenemos el operador de asignación llamado potencia en asignación, se escribe `**=` y funciona de la siguiente manera:
 
 ```python
 >>> f = 2
