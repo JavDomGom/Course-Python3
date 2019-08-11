@@ -265,3 +265,106 @@ Finalmente calculamos esta operación lógica en la que hay una conjunción `and
 >>> False and False
 False
 ```
+
+## Operadores de asignación
+
+Se trata de aquellos operadores que se utilizan para asignar o modificar el valor de una variable, constante o cualquier otro objeto en Python.
+
+El primer operador de asignación es un simple símbolo de igual `=` y se utiliza para asgnar un valor sin más, por ejemplo:
+
+```python
+>>> a = 0
+```
+
+De esta manera la variable `a` tendría asignado desde este momento el valor entero `3`.
+
+
+También existe el operador de suma en asignación, se escribe `+=` y lo que hace es incrementar el valor inicial de una variable, y lo incrementa exactamente la cantidad que se coloque a la derecha del operador, véase el ejemplo:
+
+```python
+>>> a += 1
+>>> print(a)
+1
+>>> a += 1
+>>> print(a)
+2
+>>> a += 1
+>>> print(a)
+3
+```
+
+También podemos hacer una resta en asignación, se escribe `-=` y funciona exactamente igual que el anterior solo que cada vez se resta la cantidad que tiene a su derecha, véase el ejemplo:
+
+```python
+>>> b = 15
+>>> b -= 5
+>>> print(b)
+10
+>>> b -= 5
+>>> print(b)
+5
+>>> b -= 5
+>>> print(b)
+0
+```
+
+En este caso, en vez de aumentar o disminuir el valor de uno en uno lo hemos hecho de cinco en cinco.
+
+Otro operador de asignación es el producto o la multiplicación en asignación, se escribe `*=` y funciona como los anteriores, solo que en ese caso multiplicará, veamos el ejemplo:
+
+```python
+>>> c = 3
+>>> c *= 2
+>>> print(c)
+6
+>>> c *= 2
+>>> print(c)
+12
+>>> c *= 2
+>>> print(c)
+24
+```
+
+De la misma forma podemos usar otro operador de asignación llamado división en asignación, se escribe `/=`, por ejemplo:
+
+```python
+>>> d = 1024
+>>> d /= 2
+>>> print(d)
+512.0
+>>> d /= 2
+>>> print(d)
+256.0
+>>> d /= 2
+>>> print(d)
+128.0
+```
+
+Nótese que en el caso de la división el resultado es devuelto con coma flotante o decimal.
+
+Tambien hay un operador de asignación llamado módulo en asignación, se escribe `%=` y se usa como los demás, solo que en este caso devuelve el resto de la división del valor original entre el que se ponga a la derecha del operador, véase el ejemplo:
+
+```python
+>>> e = 29
+>>> e %= 2
+>>> print(e)
+1
+>>> e %= 2
+>>> print(e)
+1
+```
+
+Y por último tenemos el operador de asignación llamado potencia en asignación, se escribe `**=` y funciona de la siguiente manera:
+
+```python
+>>> f = 2
+>>> f **= 2
+>>> print(f)
+4
+>>> f **= 2
+>>> print(f)
+16
+>>> f **= 2
+>>> print(f)
+256
+```
