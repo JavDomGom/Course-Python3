@@ -111,7 +111,7 @@ Además de la palabra reservada `else` también existe la palabra reservada `eli
 Saliendo del sistema ...
 ```
 
-Como podemos comprobar el código de nuestra sentencia if cada vez se va haciendo más grande, en realidad ya empieza a coger forma y resulta que estamos haciendo un pequeño programa, esto empieza a ser un poco más complicado de manejar desde una consola de Python, así que lo mejor es que comencemos a escribir nuestro código dentro de un archivo al que llamaremos `mi_programa.py` de modo que quede de la siguiente manera:
+Como podemos comprobar el código de nuestra sentencia if cada vez se va haciendo más grande, en realidad ya empieza a coger forma y resulta que estamos haciendo un pequeño programa, esto empieza a ser un poco más complicado de manejar desde una consola de Python, así que lo mejor es que comencemos a escribir nuestro código dentro de un archivo al que llamaremos `mi_primer_programa.py` de modo que quede de la siguiente manera:
 
 ```python
 comando = 'SALIR'
@@ -126,11 +126,84 @@ else:
     print('Este comando no se reconoce.')
 ```
 
-Para ejecutar un programa Python contenido en un archivo se ha de hacer de la siguiente forma desde la consola:
+En realidad el archivo puede tener cualquier otro nombre, este solo es uno de ejemplo. Para ejecutar un programa Python contenido en un archivo se ha de hacer de la siguiente forma desde la consola:
 
 ```bash
-python3 mi_programa.py
+python3 mi_primer_programa.py
 Saliendo del sistema ...
 ```
 
-Como se puede comprobar funciona perfectamente, muestra el mensaje que tiene que mostrar.
+Como se puede comprobar funciona perfectamente, muestra el mensaje que tiene que mostrar en función del valor que tiene su variable, definido en el própio código. A partir de este momento vamos a trabajar siempre con archivos en los que escribiremos el código fuente de nuestros programas.
+
+Vamos a desarrollar un pequeño programa en el que podamos utilizar de nuevo una sentencia `if` con `elif` y `else`, solo que esta vez incluiremos una nueva función `input()` para pedirle al usuario que introduzca un dato al ejecutar el programa. Para ello escribiremos el siguiente fragmento de código en un archivo al que llamaremos `calcular_nota.py`, será un pequeño programa que le pedirá al usuario introducir una calificación, es decir, un número cualquiera.
+
+```python
+nota = float(input('Introduce la nota: '))
+
+if nota >= 9:
+    print('Sobresaliente')
+elif nota >= 7:
+    print('Notable')
+elif nota >= 6:
+    print('Bien')
+elif nota >= 5:
+    print('Suficiente')
+else:
+    print('Insuficiente')
+```
+
+Si ejecutamos el programa podremos introducir cualquier número, automáticamente lo convertirá en un entero de coma flotante ya que lo estamos forzando así con la función `float()`. Es decir, si el usuario introduce un número `5` elprograma lo convertirá automáticamente en el número `5.0`, y si introduce un `10` lo convertirá en un `10.0`. Aquí tenemos algunas ejecuciones de nuestro programa con diferentes *inputs* de entrada, se puede ver cómo imprime un mensaje diferente en cada caso.
+
+```bash
+python3 calcular_nota.py
+Introduce la nota: 10
+Sobresaliente
+```
+```bash
+python3 01_introduccion/01_05_src/calcular_nota.py
+Introduce la nota: 7.5
+Notable
+```
+```bash
+python3 01_introduccion/01_05_src/calcular_nota.py
+Introduce la nota: 6.9
+Bien
+```
+```bash
+python3 01_introduccion/01_05_src/calcular_nota.py
+Introduce la nota: 5
+Suficiente
+```
+```bash
+python3 01_introduccion/01_05_src/calcular_nota.py
+Introduce la nota: 4.9
+Insuficiente
+```
+
+## Sentencia while
+
+En esta sección trataremos la sentencia `wile`, nos servirá para realizar iteraciones. Un iteración no es más que la ejecución de una acción una o más veces, en este caso siempre y cuando cumpla como verdadera una expresión relacional o lógica. Solo finalizará cuando esa condición devuelva un valor `False`. Veamos algunos ejemplos, para ello crearemos un nuevo archivo llamado `bucle_while.py` y escribiremos en él nuestro código:
+
+```python
+c = 0
+
+while c <= 5:
+    c += 1
+    print('c vale', c)
+```
+
+En este simple programa comenzamos por iniciar una variable `c` con valor `0`. A continuación iniciamos un bucle `while` que ejecutará el código que contiene en su cuerpo solo si se cumple la condición en la que se evaluará si la variable `c` en ese momento tiene un valor menor o igual que `5`. La primera vez la variable `c` vale `0`, por lo que esta expresión devolverá `True`, así que el bucle `wile` ejecutará el código con contiene. Lo primero que hace es incrementar en `1` el valor actual de `c`, por lo que en este momento, tras ejecutar esta línea `c` àsaría a valer `1`. A continuación imprime un mensaje que dice "`c vale 1`" y entonces es cuando vuelve a evaluar de nuevo la expresión inicial, solo que ahora `c` ya no vale `0`, ha pasado a valer `1`.
+
+En esta segunda iteración se vuelve a complir que `c`sea menor o igual que `5`, por lo que repetirá el código que hay dentro del bucle `while`. Una vez más incrementará en `1`el valor de `c`, por lo que a partir de ese momento la variable `c` pasa a valer `2`. Después imprime el mensaje "`c vale 2`" y vuelve de nuevo a evaluar la expresión inicial.
+
+Este proceso se repetirá varias veces, hasta que en una de las iteraciones el valor de `c` se incremente hasta valer `6`, en cuyo caso, al volver a evaluar la expresión inicial devolverá un `False`, pues `6`no es menor o igual que `5`. En ese momento el bucle ya no ejecutará más veces el código que contiene. A continuación un ejemplo de cómo sería la ejecución de nuestro programa con este bucle `while` que hemos escrito.
+
+```python
+python3 bucle_while.py
+c vale 1
+c vale 2
+c vale 3
+c vale 4
+c vale 5
+c vale 6
+```
