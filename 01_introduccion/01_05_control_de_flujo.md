@@ -207,3 +207,88 @@ c vale 4
 c vale 5
 c vale 6
 ```
+
+Una particularidad que tiene el bucle `wile` en Python es que puede usar la palabra reservada `else` para ejecutar una acción tras finalizar el bucle, véase el siguiente ejemplo:
+
+```python
+c = 0
+
+while c <= 5:
+    c += 1
+    print('c vale', c)
+else:
+    print('Saliendo del bucle')
+```
+
+Si ejecutamos de nuevo nuestro programa con esta inclusión de la palabra reservada `else` veremos que el resultado es el mismo y además añade el mensaje "`Saliendo del bucle`" al finalizar este.
+
+```bash
+python3 bucle_while.py
+c vale 1
+c vale 2
+c vale 3
+c vale 4
+c vale 5
+c vale 6
+Saliendo del bucle
+```
+
+Al igual que en otros lenguajes de programación también podemos interrumpir la ejecución del bucle `wile` con una palabra reservada llamada `break`. Por ejemplo, en nuestro programa queremos que el bucle se corte cuando la variable `c` tenga por valor `3`, para ello debemos modificar el código de nuestro progrma añadiendo un condicional `if` y utilizaremos la sentencia `break` de la siguiente manera:
+
+```python
+c = 0
+
+while c <= 5:
+    c += 1
+
+    if c == 3:
+        print('Se corta la iteración cuando c vale', c)
+        break
+
+    print('c vale', c)
+else:
+    print('Saliendo del bucle')
+
+```
+
+Se ha añadido el condicional justo debajo de el incremento de la variable `c`, y dentro del condicional se imprime un mensaje y se hace una llamada a la sentencia `break`, que finalizará las iteraciones del bucle. Veamos el resultado de la ejecución:
+
+```bash
+python3 bucle_while.py
+c vale 1
+c vale 2
+Se corta la iteración cuando c vale 3
+```
+
+Ni siquiera llega a imprimir el mensaje que tenemos en la sentencia `else`, interrumpe el bucle `wile` del todo.
+
+Otra sentencia que podemos utilizar en un bucle `wile` es `continue`, que a diferencia de `break` en vez de romper la ejecución simplemente se salta la iteración en la por ejemplo que se cumpla una condición. Vamos a modificar el código de nuestro programa de la siguiente manera:
+
+```python
+c = 0
+
+while c <= 5:
+    c += 1
+
+    if c == 3:
+        continue
+
+    print('c vale', c)
+else:
+    print('Saliendo del bucle')
+
+```
+
+Solo hemos borrado el mensaje que se imprimiría en el condicional `if` cuando `c` valga `3`, y hemos sustituído la sentencia `break` por `continue`. Este sería el resultado de la ejecución de nuestro programa:
+
+```bash
+python3 bucle_while.py
+c vale 1
+c vale 2
+c vale 4
+c vale 5
+c vale 6
+Saliendo del bucle
+```
+
+Si nos fijamos bien, ha impreso el mensaje en el que va indicando el valor actual de la variable `c` en todo momento menos en la iteración en la que `c` vale `3`, y finalmente ha impreso el mensaje indicado en la sentencia `else`.
