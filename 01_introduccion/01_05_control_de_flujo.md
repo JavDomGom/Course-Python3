@@ -292,3 +292,29 @@ Saliendo del bucle
 ```
 
 Si nos fijamos bien, ha impreso el mensaje en el que va indicando el valor actual de la variable `c` en todo momento menos en la iteración en la que `c` vale `3`, y finalmente ha impreso el mensaje indicado en la sentencia `else`.
+
+Antes de terminar este apartado vamos a crear un nuevo programa en el que usaremos la sentencia `wile` para crear un menú interactivo desde la consola, el programa pedirá al usuario que introduzca un valor y en función de lo que el usuario introduzca ejecutará una acción u otra. También tendrá una opción para finalizar el programa. Para ello crearemos un nuvo archivo llamado `menu.py`, el código es el siguiente:
+
+```python
+print('\n MENU \n======\n')
+
+while True:
+    print('Selecciona una opción:\n')
+    print('1: Saludar')
+    print('2: Sumar dos números')
+    print('3: Salir\n')
+
+    user_choice = input()
+
+    if user_choice == '1':
+        print('Hola, qué tal?')
+    elif user_choice == '2':
+        n1 = float(input('Introduce el primer número: '))
+        n2 = float(input('Introduce el segundo número: '))
+        print('El resultado de la suma es:', n1 + n2)
+    elif user_choice == '3':
+        print('Saliendo del programa!')
+        break
+    else:
+        print('Opción no válida, vuelve a intentarlo.\n')
+```
