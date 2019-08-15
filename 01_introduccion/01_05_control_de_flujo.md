@@ -318,3 +318,27 @@ while True:
     else:
         print('Opción no válida, vuelve a intentarlo.\n')
 ```
+
+## Sentencia for
+
+La sentencia `for` nos permite realizar iteraciones de una manera muy similar a la sentencia `while`, solo que reduce considerablemente la complejidad, puesto que no es necesario crear variables previamente con indices ni necesitaremos hacer incrementos con operadores de incremento. Normalmente se utiliza para iterar sobre listas o elementos compuestos en los que puede ser necesario recorrer cada uno de esos elementos. Veamos un ejemplo muy simple, crearemos un archivo nuevo llamado `bucle_for.py` y en él escribiremos el siguiente código:
+
+```python
+numeros = [1, 2, 3, 4, 5]
+
+for numero in numeros:
+    print(numero)
+```
+
+En este simple programa creamos primero una variable llamada `numeros` de tipo lista, y como valor le asignamos una lista de números enteros del `1` al `5`. A continuación usamos la palabra reservada `for`, luefo escribimos el nombre de la variable temporal que usaremos dentro del bucle para referirnos a cada elemento por el que iteraremos, en este caso `numero`, luego la palabra reservada `in` y finalmente el nombre de la variable que contiene la información por la que realizaremos las iteraciones, en este caso nuestra lista `numeros`. A contunación vendría el cuerpo del bucle, siempre identado con una tabulación, en este caso hemos decidido imprimir el valor de la variable temporal `numero` que en cada iteración tendrá por valor cada uno de los elementos de la lista `numeros`.
+
+Veamos un ejemplo de ejecución de este pequeño programa:
+
+```bash
+python3 bucle_for.py
+1
+2
+3
+4
+5
+```
