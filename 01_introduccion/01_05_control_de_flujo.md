@@ -330,7 +330,7 @@ for numero in numeros:
     print(numero)
 ```
 
-En este simple programa creamos primero una variable llamada `numeros` de tipo lista, y como valor le asignamos una lista de números enteros del `1` al `5`. A continuación usamos la palabra reservada `for`, luefo escribimos el nombre de la variable temporal que usaremos dentro del bucle para referirnos a cada elemento por el que iteraremos, en este caso `numero`, luego la palabra reservada `in` y finalmente el nombre de la variable que contiene la información por la que realizaremos las iteraciones, en este caso nuestra lista `numeros`. A contunación vendría el cuerpo del bucle, siempre identado con una tabulación, en este caso hemos decidido imprimir el valor de la variable temporal `numero` que en cada iteración tendrá por valor cada uno de los elementos de la lista `numeros`.
+En este simple programa creamos primero una variable llamada `numeros` de tipo lista, y como valor le asignamos una lista de números enteros del `1` al `5`. A continuación usamos la palabra reservada `for`, luefo escribimos el nombre de la variable temporal que usaremos dentro del bucle para referirnos a cada elemento por el que iteraremos, en este caso `numero`, luego la palabra reservada `in` y finalmente el nombre de la variable que contiene la información por la que realizaremos las iteraciones, en este caso nuestra lista `numeros`. A contunación vendría el cuerpo del bucle, siempre identado con una tabulación, en este caso imprimir el valor de la variable temporal `numero` que en cada iteración tendrá por valor cada uno de los elementos de la lista `numeros`.
 
 Veamos un ejemplo de ejecución de este pequeño programa:
 
@@ -341,4 +341,174 @@ python3 bucle_for.py
 3
 4
 5
+```
+
+Podemos comprobar que en cada iteración imprime el valor de la variable `numero`. Tal y como hemos escrito el código de nuestro programa no ha hecho falta acceder a cada elemento de la variable `numeros` mediante un índice, como por ejemplo `numeros[0]` o `numeros[1]`, ni tampoco ha hecho falta crear una variable a modo de contador para usarla como indice, simplemente itera de uno en uno a través de todos los elementos, desde el primero hasta el último.
+
+Si quisiéramos tenerun control de cada elemento mediante un índice se puede realizar de varias maneras, pero Python dispone de un método llamado `enumerate()` que podremos utilizar para facilitar el proceso. Vamos a reemplazar el código de nuestro archivo `bucle_for.py` con el siguiente código de ejemplo:
+
+```python
+numeros = [1, 2, 3, 4, 5]
+
+for indice, numero in enumerate(numeros):
+    print(numeros[indice], numero)
+```
+
+Después de la sentencia `for` hemos iniciado dos variables temporales, es decir, variables que solo estarán disponibles dentro del cuerpo del bucle `for` hasta que este termine, estas variables son `indice` y `numero`. Dentro del cuerpo del bucle imprimimos cada elemento de la lista de las dos maneras disponibles que tenemos, una es mediante la propia lista `numeros` a la que accedemos a su índice mediante la variable `indice`y la otra es mediante la variable `numero`. A continuación un ejemplo de la ejecución del programa:
+
+```bash
+python3 bucle_for.py
+1 1
+2 2
+3 3
+4 4
+5 5
+```
+
+Acceder a los elementos de una lista mediante un índice nos va a permitir tener un mayor control de cada elemento por el que iteramos, por ejemplo para poder editar el valor de ese elemento y que permanezca ese nuevo valor en la lista una vez termine el bucle `for`, por ejemplo, vamos a modificar el código de nuestro programa para que el tercer elemento adquiera un valor nuevo, por ejemplo su propio valor multiplicado por 3:
+
+```python
+numeros = [1, 2, 3, 4, 5]
+
+for indice, numero in enumerate(numeros):
+    if indice == 2:
+        numeros[indice] *= 3
+
+    print(numeros[indice])
+
+print(numeros)
+```
+
+Hemos incluído al final del programa una línea qu eimprima todos los elementos de la lista, fuera del bucle `for`, pero comprobar que el cambio de valor en el tercer elemento prevalece en el valor de la lista. Si ejecutamos el programa de nuevo veremos el siguiente resultado:
+
+```bash
+python3 bucle_for.py
+1
+2
+9
+4
+5
+[1, 2, 9, 4, 5]
+```
+
+El tercer elemento que antes era `3` ahora es su propio valor multiplicado or 3, es decir, `9`.
+
+La sentencia `for` no solo sirve para recorrer os elementos de una lista, también tiene otras utilidades interesantes como por ejemplo la de recorrer todos los carácteres de una variable de tipo **string** o cadena de texto, por ejemplo, modifiquemos el código de nuestro programa en el archivo `bucle_for.py` con el siguiente código:
+
+```python
+cadena = 'Hola qué tal'
+
+for caracter in cadena:
+    print(caracter)
+```
+
+Primero hemos creado una variable de tipo **string** con el mensaje "`Hola qué tal`" y luego hemos creado un bucle `for` en el que hemos creado la variable `caracter` para iterar por cada carácter de la variable `cadena`. Si ejecutamos el programa se imprimirán todos los caracteres uno a uno, incluído los espacios, que también son un carácter:
+
+```bash
+python3 bucle_for.py
+H
+o
+l
+a
+
+q
+u
+é
+
+t
+a
+l
+```
+
+También podemos utilizar la función `enumerate()` como en el ejemplo anterior para acceder a cada carácter de la cadena de carácteres. Veamos cómo podemos usar la función `enumerate` para acceder a cada carácter:
+
+```python
+cadena = 'Hola qué tal'
+
+for i, c in enumerate(cadena):
+    print(cadena[i], c)
+```
+
+Si ejecutamos el programa obtendremos el siguiente resultado:
+
+```bash
+python3 bucle_for.py
+H H
+o o
+l l
+a a
+
+q q
+u u
+é é
+
+t t
+a a
+l l
+```
+
+Como podemos ver, funciona igual que cuando usábamos el bucle `for` en el ejemplo anterior. Probemos a modificar el primer carácter "`H`" por "`X`" y veamos qué sucede en este caso:
+
+```python
+cadena = 'Hola qué tal'
+
+for i, c in enumerate(cadena):
+    if i == 0:
+        cadena[i] = 'X'
+
+    print(cadena[i], c)
+
+print(cadena)
+```
+
+Si ejecutamos el programa nos devolverá el siguiente error:
+
+```bash
+python3 bucle_for.py
+Traceback (most recent call last):
+  File "01_introduccion/01_05_src/bucle_for.py", line 5, in <module>
+    cadena[i] = 'X'
+TypeError: 'str' object does not support item assignment
+```
+
+Esto sucede porque las variables de tipo **string** son inmutables, así que en esta ocasión no podremos modificar el valor de nungún caracter.
+
+En un bucle `for` también podemos utilizar la función `range()`, que generará una lista entre un rango numérico, por ejemplo, si queremos imprimir los 10 primeros números utilizando la función `range()` tendríamos que editar el archivo `bucle_for.py` con el siguiente código:
+
+```python
+for numero in range(10):
+    print(numero)
+```
+
+Si ejecutamos el programa obtendremos el siguiente resultado:
+
+```bash
+python3 bucle_for.py
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+```
+
+La función `range()` permite introducir dos valores separados por coma entre sus paréntesis, por ejemplo si queremos obtener un rango numérico entre el número `27` y el número `31` tendríamos que escribir `range(27, 31)`, modifiquemos nuestro código para verlo:
+
+```python
+for numero in range(27, 31):
+    print(numero)
+```
+
+Si ejecutamos d enuevo el programa obtendremos este otro resultado:
+
+```bash
+python3 bucle_for.py
+27
+28
+29
+30
 ```

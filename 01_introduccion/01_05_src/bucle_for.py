@@ -1,4 +1,2 @@
-numeros = [1, 2, 3, 4, 5]
-
-for numero in numeros:
+for numero in range(27, 31):
     print(numero)
