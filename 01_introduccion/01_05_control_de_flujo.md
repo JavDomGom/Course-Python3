@@ -503,7 +503,7 @@ for numero in range(27, 31):
     print(numero)
 ```
 
-Si ejecutamos d enuevo el programa obtendremos este otro resultado:
+Si ejecutamos de nuevo el programa obtendremos este otro resultado:
 
 ```bash
 python3 bucle_for.py
