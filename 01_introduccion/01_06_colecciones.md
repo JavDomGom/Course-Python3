@@ -63,3 +63,292 @@ print(tupla[2][1])
 python3 tupla.py
 2
 ```
+
+Antes se ha mencionado que las tuplas es un tipo de dato parecido a las listas pero que su valor en inmutable. Vamos a modificar el código de nuestro programa para intentar modificar el primer valor de nuestra tupla y ver el error que devuelve:
+
+```python
+tupla = (100, 'Hola', [1, 2, 3], 3.14)
+
+tupla[0] = 37
+
+print(tupla)
+```
+
+Si ejecutamos el programa veremos que devuelve el siguiente error en el que se indica que las tuplas  son objetos que no soportan la asignación de valores a cualquiera de su elementos:
+
+```bash
+python3 tupla.py
+Traceback (most recent call last):
+  File "tupla.py", line 3, in <module>
+    tupla[0] = 37
+TypeError: 'tuple' object does not support item assignment
+```
+
+Al igual que la listas también tienen una longitud, que representaría el número de elementos que tiene, y para ello se utiliza de nuevo la función `len()`, por ejemplo:
+
+```python
+tupla = (100, 'Hola', [1, 2, 3], 3.14)
+
+print(len(tupla))
+```
+```bash
+python3 tupla.py
+4
+```
+
+Tanto en las listas como en las tuplas se puede buscar la psoición de un elemento si conocemos el valor de dicho elemento, esto se consigue invocando al método `.index()` de la siguiente manera, por ejemplo, modifiquemos el código de nuestro programa para que nos devuelva la posición del elemento `[1, 2, 3]`:
+
+```python
+tupla = (100, 'Hola', [1, 2, 3], 3.14)
+
+print(tupla.index([1, 2, 3]))
+```
+
+El ejecutarlo nos devuelve la posición `2`, e sdecir, el elemento que está en tercer lugar, pues en los índices siempre se empieza a contar desde `0`:
+
+```bash
+python3 tupla.py
+2
+```
+
+Otro método interesante que podemos usar tanto en listas como en tuplas en el método `.count()`, este nos devolverá el número de veces que aparece repetido un elemento conocido en la lista o en la tupla. Editemos el código de nuestro programa para ver unos ejemplos:
+
+```python
+tupla = (100, 'Hola', 100, 100, [1, 2, 3], 3.14)
+
+print(tupla.count(100))
+```
+```bash
+python3 tupla.py
+3
+```
+
+Aunque las tuplas y las listas tienen muchos métodos en común hay algunos métodos que no están disponibles en las tuplas como por ejemplo el pétodo `.append()` para añadir nuevos elementos, puesto que las tuplas son inmutables y no se pueden ni editar, si siquiera añadir o eliminar elementos.
+
+## Conjuntos
+
+Los conjuntos son colecciones desordenadas de elementos únicos. Se suelen utilizar para comprobar pertenecias a grupos y eliminación de elementos duplicados.
+
+Para empezar a trabajar con los conjuntos vamos a crear un archivo nuevo llamado `conjuntos.py` y vamos a ir escribiendo código en él. Para crear un conjunto, si este va a ser un cojnuto vacío se hace de la siguiente manera:
+
+```python
+conjunto = set()
+```
+
+Pero si queremos un conjunto que contenga elementos solo hay que escribir los elementos que se quieren añadir a dicho conjunto entre llaves `{}` y separados por comas, por ejemplo:
+
+```python
+conjunto = {1, 2, 3}
+
+print(conjunto)
+```
+```bash
+python3 conjunto.py
+{1, 2, 3}
+```
+
+Ahra vamos a utilizar el método `.add()` para añadir un nuevo elemento a este conjunto, por ejemplo el número `4`:
+
+```python
+conjunto.add(4)
+```
+```bash
+python3 conjunto.py
+{1, 2, 3, 4}
+```
+
+Se puede ver cómo se ha añadido el número `4` al conjunto, justo al final. Ahora vamos a añadir otro elemento nuevo, por ejemplo el número `0` y mostremos cómo imprime el valor del conjunto:
+
+```python
+conjunto.add(0)
+```
+```bash
+python3 conjunto.py
+{0, 1, 2, 3, 4}
+```
+
+Se ve cómo lo ha añadido, pero no lo ha incluído al final de los elementos, si no al principio, aparentemente lo está ordenando numéricamente. Probamos ahora a añadir un nuevo elemento de tipo **string**:
+
+```python
+conjunto.add('H')
+```
+```bash
+python3 conjunto.py
+{0, 1, 2, 3, 4, 'H'}
+```
+
+La letra "`H`" la ha añadido al final. Ahora vamos a añadir dos letras más, la letra "`A`" y la letra "`Z`" y veamos qué pasa:
+
+```python
+conjunto.add('A')
+conjunto.add('Z')
+```
+```bash
+python3 conjunto.py
+{0, 1, 2, 3, 4, 'A', 'Z', 'H'}
+```
+
+Los números los sigue mostrando en orden numérico de menos a mayor, pero los carácteres los muestra en un orden aleatorio, de hecho, si ejecutamos el programa varias veces seguidas podremos comprobar que el orden de las letras "`A`", "`H`" y "`Z`" va cambiando, por eso decimos que los conjuntos son un tipo de colecciones desordenadas.
+
+Los cojnutos son muy útiles para comprobar la pertenencia a un grupo, por ejemplo, hagamos un grupo de personas llamado `conjuntoA`:
+
+```python
+conjuntoA = {'Javier', 'Bob', 'Alice'}
+```
+
+Para saber si una persona en concreto pertenece al conjunto `conjuntoA` debemos usar la palabra reservada `in` de la siguiente manera:
+
+```python
+'Javier' in conjuntoA
+```
+
+Esta comprobación devolverá un valor booleano, es decir `True` o `False`, usemos la función `print()` en nuestro código para poder visualizarlo:
+
+```python
+conjuntoA = {'Javier', 'Bob', 'Alice'}
+
+print('Javier' in conjuntoA)
+```
+```bash
+python3 conjunto.py
+True
+```
+
+Si lo que queremos comprobar es si una persona en concreto no está en el conjunto `conjuntoA` podemos usar la negación `not` de la siguiente manera:
+
+```python
+conjuntoA = {'Javier', 'Bob', 'Alice'}
+
+print('Javier' not in conjuntoA)
+```
+```bash
+python3 conjunto.py
+False
+```
+
+Algo muy interesante de los conjuntos es que no pueden contener elementos repetidos, si se añade varias veces el mismo elemento no dará ningún error, pero solo lo mostrará una vez, hagamos una prueba en nuestro código:
+
+```python
+conjuntoA = {'Javier', 'Bob', 'Javier', 'Javier', 'Alice'}
+
+print(conjuntoA)
+```
+```bash
+python3 conjunto.py
+{'Alice', 'Javier', 'Bob'}
+```
+
+Podemos explotar esta funcionalidad de los conjuntos por ejemplo para eliminar elementos repetidos en una lista, pero para ello hay que emplear una técnica llamada **cast** en la que vamos a cambiar un tipo de dato a otro tipo, en este caso vamos a convertir una variable de tipo lista que contendrá elementos repetidos a una variable de tipo conjunto, por lo que se eliminarán, finalmente volveremos a hacer **cast** para volver a convertir nuestra variable a tipo lista, hagámoslo por pasos, primero creamos la variable `lista` de tipo lista con elementos repetidos:
+
+```python
+lista = [1, 2, 3, 3, 2, 1]
+```
+
+A continuación creamosuna nueva variable `conjunto` de tipo conjunto a la que le vamos a añadir como valor el contenido de la variable `lista` utilizando el método `set()` de la siguiente manera:
+
+```python
+lista = [1, 2, 3, 3, 2, 1]
+conjunto = set(lista)
+
+print(conjunto)
+```
+
+Si ejecutamos ahora nuestro programa nos devolverá un conjunto con los elementos de `lista` sin repetir:
+
+```bash
+python3 conjunto.py
+{1, 2, 3}
+```
+
+Finalmente vamos a convertir de nuevo la variable `conjunto` sin elementos repetidos a una lista, para ello volvemos a hacer **cast** utilizando en este caos el método `list()` de la siguiente manera:
+
+```python
+lista = [1, 2, 3, 3, 2, 1]
+conjunto = set(lista)
+lista = list(conjunto)
+
+print(lista)
+```
+```bash
+python3 conjunto.py
+[1, 2, 3]
+```
+
+En vez de hacer este **cast** doble en varias líneas podemos hacerlo más sencillo en una sola línea de la siguiente manera:
+
+```python
+lista = [1, 2, 3, 3, 2, 1]
+lista = list(set(lista))
+
+print(lista)
+```
+```bash
+python3 conjunto.py
+[1, 2, 3]
+```
+
+Este concepto también funciona con cadenas de carácteres, por ejemplo:
+
+```python
+cadena = "El perro de San Roque no tiene rabo"
+
+print(set(cadena))
+```
+```bash
+python3 conjunto.py
+{'S', 'u', 'b', 'E', 'r', 'd', 'n', 'o', 'q', 'i', 'e', ' ', 't', 'a', 'p', 'R', 'l'}
+```
+
+Como resultado se crea un conjunto con todas las letras que aparecen en la variable de tipo **string** `cadena`, pero sin repetir y sin guardar un orden específico.
+
+## Diccionarios
+
+El último tipo de colección que vamos a ver son los diccionarios. Junto a las listas son las colecciones más utilizadas en Python. Se basa en una estructura mapeada, del ingñés **mapping** donde cada elemento de la colección se encuentra identificado mediante una clave única, por lo tanto no puede haber dos claves iguales en el mismo diccionario. Así pues, para crear un diccionario deberemos indicar siempre una clave, que generalmente será una cadena de caracteres, y un valor para cada elemento. Crearemos un nuevo archivo llamado `diccionario.py` para ir añadiendo el código de esta sección. Podemos crear un diccionario vacío escribiendo unas simples llaves `{}` sin nada dentro:
+
+```python
+diccionario_vacio = {}
+
+print(diccionario_vacio)
+```
+```bash
+python3 diccionario.py
+{}
+```
+
+Podemos asegurarnos de que es un diccionario utilizando la función `type()`, que nos devolverá el tipo al que pertenece una variable:
+
+```python
+diccionario_vacio = {}
+
+print(type(diccionario_vacio))
+```
+```bash
+python3 diccionario.py
+<class 'dict'>
+```
+
+Veamos un ejemplo en el que crearemos un diccionario de colores y su traducción al inglés:
+
+```python
+diccionario = {'amarillo': 'yellow', 'azul': 'blue', 'verde': 'green'}
+
+print(diccionario)
+```
+```bash
+python3 diccionario.py
+{'amarillo': 'yellow', 'azul': 'blue', 'verde': 'green'}
+```
+
+Con esto ya tendríamos un diccionario definido con tres elementos con la estructura "`clave:valor`". Si quisiéramos saber el valor que tiene el color `amarillo` en esta estructra de datos tendríamos que hacerlo de la siguiente manera:
+
+```python
+diccionario = {'amarillo': 'yellow', 'azul': 'blue', 'verde': 'green'}
+
+print(diccionario['amarillo'])
+```
+```bash
+python3 diccionario.py
+yellow
+```
+
+Para mostrar el `valor` de uno de los elementos del diccionario es necesario especificar la `clave`, en este ejemplo la clave es `'amarillo'` y el valor es `'yellow'`.
