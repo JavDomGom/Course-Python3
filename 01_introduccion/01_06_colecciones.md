@@ -352,3 +352,67 @@ yellow
 ```
 
 Para mostrar el `valor` de uno de los elementos del diccionario es necesario especificar la `clave`, en este ejemplo la clave es `'amarillo'` y el valor es `'yellow'`.
+
+También podemos utilizar números como claves o índices, por ejemplo, vamos a crear un diccionario nuevo llamado números en el que las claves serán números enteros y los valores un **string** con su nombre:
+
+```python
+numeros = {10: 'diez', 23: 'veintitrés', 57: 'cincuenta y siete'}
+```
+
+Para acceder al valor de un índice del dicionario bastaría con especificar la clave, por ejemplo:
+
+```python
+print(numeros[57])
+```
+```bash
+python3 diccionario.py
+cincuenta y siete
+```
+
+Los diccionarios también nos permiten crear índices con la clave de tipo **string** y su valor de tipo numérico o entero, por ejemplo, creamos un dicionario que se llama `edades` de la siguiente manera:
+
+```python
+edades = {'Javier': 18, 'Alice': 21, 'Bob': 33}
+
+print(edades)
+```
+```bash
+python3 diccionario.py
+{'Javier': 18, 'Alice': 21, 'Bob': 33}
+```
+
+Del mismo modo que podíamos modificar los registros de una lista también podremos modificar los registros de un diccionario. Volvamos al ejemplo de los colores para ver un ejemplo. Vamos a crear un diccionario llamado `colores`, este va a contener los nombres de algunos colores como clave y su traducción al inglés como valor.
+
+```python
+colores = {'amarillo': 'yellow', 'azul': 'blue', 'verde': 'green'}
+```
+
+Ahora vamos a imprimir el diccionario antes de realizar alguna modificación y después cambiamos el índice o clave `azul`, que actualmente tiene como valor `blue`, le vamos a poner como nuevo valor `purple` y finalmente volvemos a imprimir el contenido del diccionario para ver que se ha modificado con éxito:
+
+```python
+colores = {'amarillo': 'yellow', 'azul': 'blue', 'verde': 'green'}
+
+print(colores)
+
+colores['azul'] = 'purple'
+
+print(colores)
+```
+```bash
+python3 diccionario.py
+{'amarillo': 'yellow', 'azul': 'blue', 'verde': 'green'}
+{'amarillo': 'yellow', 'azul': 'purple', 'verde': 'green'}
+```
+
+También podemos borrar una entrada del diccionario, es decir suna clave y su valor, para ello es necesario usar el método `.del()` y especificar la clave a borrar, véase el ejemplo:
+
+```python
+del(colores['azul'])
+
+print(colores)
+```
+```bash
+python3 diccionario.py
+{'amarillo': 'yellow', 'verde': 'green'}
+```
+
