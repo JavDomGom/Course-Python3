@@ -416,3 +416,4 @@ python3 diccionario.py
 {'amarillo': 'yellow', 'verde': 'green'}
 ```
 
+Otra cosa bastante útil que podemos hacer con un diccionario es recorrer todos sus items con un bucle `for`.
