@@ -6,6 +6,8 @@ En Python, además de las listas también tenemos un tipo especial de dato llama
 - Conjuntos
 - Diccionarios
 
+Además, podemos simular dos colecciones tradicionales de otros lenguajes como las `Pilas` y las `Colas` utilizando datos de tipo `lista` o librerías y módulos de Python.
+
 ## Tuplas
 Las tuplas son unas colecciones parecidas a las listas, con la diferencia de que las tuplas son inmutables. Se suelen utilizar para asegurarnos de que determinados datos no se puedan modificar. Python utiliza tuplas en alguna de sus funciones para devolver resultados inmutables. La manera de definir un dato de tipo tupla es parecido a las listas, solo que en vez de usar corchetes `[]` se utilizan paréntesis `()`. Dentro de los paréntesis se incluyen los elementos como si fueran una lista. Para poder ver un ejemplo práctico vamos a crear un archivo llamado `tupla.py` y dentro vamos a incluír el siguiente código:
 
@@ -512,3 +514,122 @@ Bob 3 B
 ```
 
 Como se puede ver, es relativamente sencillo crear una lista que haga la función de una simple base de datos de alumnos, y ahora ya sabemos cómo podemos acceder a los datos de cada elemento de la lista, que son los datos de los alumnos.
+
+## Pilas
+
+El lenguaje Python no implementa una colección del tipo `pila` como en otros lenguajes, sin embargo podemos simularlas fácilmente con listas. Una `pila` es una colección de elementos ordenados y únicamente permite dos acciones, añadir elementos a la pila y sacar elementos de la pila. Lo interesante de las pilas es que el último elemento en entrar en la pila es el primero en salir, en inglés se denomina `LIFO` (**Last In, Fist Out**), como si se tratara de una pila de platos sucios que hay que lavar a mano, se van dejando encima de una mesa, y luego se van cogiendo uno a uno para lavarlos, en cuyo caso se coge primero el último plato sucio que se dejó en la pila.
+
+Para simular el comportamiento de una `pila` en Python comenzaremos creando un nuevo fichero llamdo `pila.py` y crearemos una lista llamada `p` con unos cuantos valores:
+
+```python
+pila = [0, 1, 2, 3, 4]
+```
+
+A continuación añadimos un nuevo elemento a la pila `p` mediante el método `.append()`, que es el que usábamos para añadir elementos a una lista, ya que es exactamente lo que queremos hacer, puesto que estamos usando listas para simular una pila. Añadamos también una línea para imprimir el resultado tras añadir un elemento a la pila.
+
+```python
+pila.append(5)
+
+print(pila)
+```
+```bash
+python3 pila.py
+[0, 1, 2, 3, 4, 5]
+```
+
+Como se puede comprobar, el úlitmo elemento que hemos añadido a la `pila` es el número `5`. Ahora para eliminar el último elemento de la pila usaremos un nuevo método que tienen disponible las listas llamado `.pop()`.
+
+```python
+pila.pop()
+print(pila)
+```
+```bash
+python3 pila.py
+[0, 1, 2, 3, 4, 5]
+[0, 1, 2, 3, 4]
+```
+
+Ahora al ejecutar el programa, se puede ver que tras ejecutar el método `.pop()` si se imprime el contenido de la pila esta ya no tiene el último elemento. Probemos a añadir después de nuestro código varias llamadas al método `.pop()` seguidas e imprimamos el nuevo estado de la pila.
+
+```python
+pila.pop()
+pila.pop()
+pila.pop()
+print(pila)
+```
+```bash
+python3 pila.py
+[0, 1, 2, 3, 4, 5]
+[0, 1, 2, 3, 4]
+[0, 1]
+```
+
+Cada llamada al método `.pop()` se elimina el último elemento que entró en la `pila`, en este caso se han eliminado 3 elementos más.
+
+## Colas
+
+Una `cola` es una estructura de datos parecida a las `pilas`, a diferencia de que el primer elemento en entrar en la `cola` es el primero en salir, en inglés se denomina `FIFO` (**First In, First Out**). Podríamos compararlo con una cola para entrar en la cita con el médico, el que primero llega es antendido y cuando termina sale.
+
+Para poder ver cómo implementar una `cola` en Python primero vamos a crear un nuevo archivo llamado `cola.py` y tendremos que importar el módulo `deque` de la librería standard de Python `collections` de la siguiente manera:
+
+```python
+from collections import deque
+```
+
+Más adelante se explicará en detalle la importación de librerías y módulos de librerías en Python.
+
+A continuación crearemos una cola vacía mediante el siguiente código:
+
+```python
+cola = deque()
+print(cola)
+```
+
+Si imprimimos el contenido de la cola veremos que aparece como una lista vacía:
+
+```bash
+python3 cola.py
+deque([])
+```
+
+Ahora vamos a añadir un primer elemento a esta cola que inicialmente esta vacía, como lo que contiene dentro es una `lista` podemos usar el método `.append()` que ya habíamos usado anteriormente para añadir elementos a una lista, por ejemplo una cadena de carácteres, además imprmimos el contenido de la cola de nuevo para comprobar que la cola ya tiene al menos un elemento:
+
+```python
+cola.append('Javier')
+print(cola)
+```
+```bash
+python3 cola.py
+deque([])
+deque(['Javier'])
+```
+
+Vamos a añadir un par de elementos más a la `cola`:
+
+```python
+cola.append('Bob')
+cola.append('Alice')
+print(cola)
+```
+```bash
+python3 cola.py
+deque([])
+deque(['Javier'])
+deque(['Javier', 'Bob', 'Alice'])
+```
+
+Ahora que ya tenemos una `cola` con varios elementos, que han sido introducidos secuencialmente, vamos a usar un método propio del módulo `deque` que hemos importado llamado `.popleft()` para eliminar el elemento de la `cola` que entró primero, en este caso es la cadena `'Javier'`, e imprimamos el nuevo estado de la cola:
+
+```python
+cola.popleft()
+print(cola)
+```
+```bash
+python3 cola.py
+deque([])
+deque(['Javier'])
+deque(['Javier', 'Bob', 'Alice'])
+deque(['Bob', 'Alice'])
+```
+
+El método `.popleft()` funciona como el método `.pop()` que hemos usado en las `pilas` solo que elimina los elementos de una lista por la izquierda en vez de por la derecha.
