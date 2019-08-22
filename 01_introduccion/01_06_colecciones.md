@@ -416,4 +416,99 @@ python3 diccionario.py
 {'amarillo': 'yellow', 'verde': 'green'}
 ```
 
-Otra cosa bastante útil que podemos hacer con un diccionario es recorrer todos sus items con un bucle `for`.
+Otra cosa bastante útil que podemos hacer con un diccionario es recorrer todos sus items con un bucle `for`, veamos un primer ejemplo:
+
+```python
+edades = {'Javier': 18, 'Alice': 21, 'Bob': 33}
+
+for clave in edades:
+    print(clave)
+```
+```bash
+python3 diccionario.py
+Javier
+Alice
+Bob
+```
+
+De este modo podremos listar la clave de cada uno de los índices del diccionario, pero quizás podría interesarnos acceder a los valores. Esto se puede realizar de la siguiente manera:
+
+```python
+for clave in edades:
+    print(edades[clave])
+```
+```bash
+python3 diccionario.py
+18
+21
+33
+```
+
+Si lo que quiseramos es mostrar tanto la clave como el valor podríamos hacerlo de la siguiente manera:
+
+```python
+for clave in edades:
+    print(clave, edades[clave])
+```
+```bash
+python3 diccionario.py
+Javier 18
+Alice 21
+Bob 33
+```
+
+Sin embargo esta forma es un poco rudimentaria, existen formas más óptimas de acceder a ambos datos, por ejemplo con el método `.items()` y seteando en el bucle las dos variables de la siguiente manera:
+
+```python
+for clave, valor in edades.items():
+    print(clave, valor)
+```
+```bash
+python3 diccionario.py
+Javier 18
+Alice 21
+Bob 33
+```
+
+Para terminar esta sección veremos cómo se puede crear una estructura de datos un poco más avanzada, por ejemplo creando una lista con varios diccionarios como elementos y cómo podemos luego acceder a los datos de cada diccionario con un bucle `for`, bien para mostrarlos o para editarlo, veamos un ejemplo. Primero crearemos una lista vacía llamada `alumnos`:
+
+```python
+alumnos = []
+```
+
+A continuación crearemos un diccionario llamado `a` y registrará tres datos de una alumno, por ejemplo `'Nombre'`, `'Curso'` y `'Clase'`.
+
+```python
+a = {'Nombre': 'Javier', 'Curso': 1, 'Clase': 'A'}
+```
+
+Añadimos este primer diccionario como un elemento a la lista `alumnos`.
+
+```python
+alumnos.append(a)
+```
+
+Repetimos los dos pasos anteriores un par de veces con otros dos alumnos más:
+
+```python
+a = {'Nombre': 'Alice', 'Curso': 2, 'Clase': 'C'}
+alumnos.append(a)
+
+a = {'Nombre': 'Bob', 'Curso': 3, 'Clase': 'B'}
+alumnos.append(a)
+```
+
+Y finalmente recorremos la lista `alumnos` con un bucle for, seteando como variable `a` cada elemento, que en este caso es un diccionario. Luego dentro del bucle haremos un `print()` de los tres datos de cada diccionario `a`, es decir `'Nombre'`, `'Curso'` y `'Clase'`.
+
+```python
+for a in alumnos:
+    print(a['Nombre'], a['Curso'], a['Clase'])
+```
+```bash
+python3 diccionario.py
+Javier 1 A
+Alice 2 C
+Bob 3 B
+```
+
+Como se puede ver, es relativamente sencillo crear una lista que haga la función de una simple base de datos de alumnos, y ahora ya sabemos cómo podemos acceder a los datos de cada elemento de la lista, que son los datos de los alumnos.
