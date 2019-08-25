@@ -4,16 +4,16 @@ En esta sección vamos a aprender acerca de la entrada y salida de datos en un p
 
 La primera forma de capturar información en nuestro programa Python ya la conocemos, es mediante la función `input()`, que toma los datos que el usuario introduce a través del teclado y lo hace como cadenas de texto o **strings**, pero tambien podemos transformar los datos introducidos para poder trabajar con ellos o manipularlos.
 
-## Entradas
+## Entradas por teclado
 
-Para trabajar la entrada de datos vamos a crear un nuevo archivo llamado `entrada.py` y vamos a ir añadiendo código para su estudio. Por ejemplo, vamos a hacer un pequeño programa que pida al usuario introducir un número decimal (`float`), y para ello vamos a usar en primera instancia la función `input()`. Una vez que el usuario introduzca un número decimal este se imprimirá por pantalla:
+Para trabajar la entrada de datos por teclado vamos a crear un nuevo archivo llamado `entrada_por_teclado.py` y vamos a ir añadiendo código para su estudio. Por ejemplo, vamos a hacer un pequeño programa que pida al usuario introducir un número decimal (`float`), y para ello vamos a usar en primera instancia la función `input()`. Una vez que el usuario introduzca un número decimal este se imprimirá por pantalla:
 
 ```python
 decimal = input('Introduce un número decimal: ')
 print(decimal)
 ```
 ```bash
-python3 entrada.py
+python3 entrada_por_teclado.py
 Introduce un número decimal: 3.14
 3.14
 ```
@@ -24,7 +24,7 @@ Aparentemente lo ha hecho todo correctamente, y así es, ha impreso por pantalla
 print(type(decimal))
 ```
 ```bash
-python3 entrada.py
+python3 entrada_por_teclado.py
 Introduce un número decimal: 3.14
 3.14
 <class 'str'>
@@ -38,7 +38,7 @@ print(decimal)
 print(type(decimal))
 ```
 ```bash
-python3 entrada.py
+python3 entrada_por_teclado.py
 Introduce un número decimal: 3.14
 3.14
 <class 'float'>
@@ -59,7 +59,7 @@ for x in range(3):
 print(valores)
 ```
 ```bash
-python3 entrada.py
+python3 entrada_por_teclado.py
 Introduce un valor cualquiera: abcd
 Introduce un valor cualquiera: Hola
 Introduce un valor cualquiera: 1234
@@ -69,3 +69,28 @@ Introduce un valor cualquiera: 1234
 Como se puede ver, hemos introducido varios valores dentro de una lista, hemos completado una colección introduciendo datos por teclado varias veces.
 
 Esta manera de introducir datos no es la más común, solo cuando se estan ejecutando programas o scripts Python en una terminal, normalmente los datos se suelen obtener mediante la lectura de datos en ficheros o bases de datos o mediante interfactes gráficas en los que los usuarios completan formularios de datos.
+
+## Entrada de datos por argumentos
+
+Otra posibilidad de pasar datos externos a un programa en Python es a través de argumentos. Se trata de una serie de datos que se han de escribir a la hora de ejecutar el programa, separados por espacios y siempre a continuación del nombre del archivo que contiene el código Python, y que podremos utilizar dentro del programa:
+
+```bash
+python3 nombre_del_programa.py argumento1 argumento2 argumentoN
+```
+
+Es importante aclarar que si se quiere pasar como argumento una cadena de carácteres que contiene espacio, por ejemplo una frase corriente, esta debe ir siempre englobada entre comillas simples o dobles, de lo contrario entenderá cada palabra de la frase como un argumento diferente. Para poder ver un ejemplo crearemos el archivo `entrada_por_argumentos.py` y añadiremos el siguiente código de ejemplo:
+
+```python
+import sys
+
+print(sys.argv)
+```
+
+Para poder pasarle al programa argumentos será necesario importar al inicio del código la librería interna de python llamada `sys`. A continuación imprimiremos todos los argumentos que se le pasan al programa Python mediante la instrucción `sys.argv`, que imprmirá todos los argumentos como elementos de una lista:
+
+```bash
+python3 entrada_por_argumentos.py 'Todo esto es un argumento' 3.14 -27
+['entrada_por_argumentos.py', 'Todo esto es un argumento', '3.14', '-27']
+```
+
+Nótese que el propio nombre del programa es en sí un argumento, el primer argumento de la lista, el que está en la posición `0`. Todos los demás argumentos se han convertido a formato **string** automáticamente y cada uno está en una posición del índice de la lista, respetando el mismo orden que se empleó a la hora de escribirlos al ejecutar el programa.
