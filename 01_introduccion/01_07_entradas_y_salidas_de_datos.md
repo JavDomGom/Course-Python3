@@ -94,3 +94,46 @@ python3 entrada_por_argumentos.py 'Todo esto es un argumento' 3.14 -27
 ```
 
 Nótese que el propio nombre del programa es en sí un argumento, el primer argumento de la lista, el que está en la posición `0`. Todos los demás argumentos se han convertido a formato **string** automáticamente y cada uno está en una posición del índice de la lista, respetando el mismo orden que se empleó a la hora de escribirlos al ejecutar el programa.
+
+Ahora vamos a cambiar el código de nuestro programa para que imprima una frase un número de veces. Haremos que la frase a imprimir sea el primer argumento (entre comillas simples o dobles) y el número de veces que se imprimirá será el segundo argumento:
+
+```python
+import sys
+
+texto = sys.argv[1]
+repeticiones = int(sys.argv[2])
+
+for r in range(repeticiones):
+    print(texto)
+```
+```bash
+python3 entrada_por_argumentos.py 'Hola mundo!' 3
+Hola mundo!
+Hola mundo!
+Hola mundo!
+```
+
+Como se puede ver, el programa ha impreso el primer argumento `'Hola mundo!'` tantas veces como indica el número del segundo argumento.
+
+Ta y como está hecho este simple programa podría fallas si no se le pasan los argumentos esperados. Para ello es recomendable añadir un pequeño control sobre los argumentos al inicio, por ejemplo:
+
+```python
+import sys
+
+if len(sys.argv) == 3:
+    texto = sys.argv[1]
+    repeticiones = int(sys.argv[2])
+
+    for r in range(repeticiones):
+        print(texto)
+else:
+    print('Error, introduce los argumentos correctamente.')
+    print('Ejemplo: ' + sys.argv[0] + ' \'Texto cualquiera\' 3')
+```
+```bash
+python3 entrada_por_argumentos.py 'Hola mundo!'
+Error, introduce los argumentos correctamente.
+Ejemplo: entrada_por_argumentos.py 'Texto cualquiera' 3
+```
+
+En esta ocasión el programa devuelve un error por que no se cumple la condición que hemps establecido, es decir, que el programa tenga 3 argumentos, contando como el nombre del archivo del propio programa como primer argumento.
