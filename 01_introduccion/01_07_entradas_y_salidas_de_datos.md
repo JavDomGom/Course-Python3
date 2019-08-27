@@ -4,7 +4,7 @@ En esta sección vamos a aprender acerca de la entrada y salida de datos en un p
 
 La primera forma de capturar información en nuestro programa Python ya la conocemos, es mediante la función `input()`, que toma los datos que el usuario introduce a través del teclado y lo hace como cadenas de texto o **strings**, pero tambien podemos transformar los datos introducidos para poder trabajar con ellos o manipularlos.
 
-## Entradas por teclado
+## Entrada de datos por teclado
 
 Para trabajar la entrada de datos por teclado vamos a crear un nuevo archivo llamado `entrada_por_teclado.py` y vamos a ir añadiendo código para su estudio. Por ejemplo, vamos a hacer un pequeño programa que pida al usuario introducir un número decimal (`float`), y para ello vamos a usar en primera instancia la función `input()`. Una vez que el usuario introduzca un número decimal este se imprimirá por pantalla:
 
@@ -137,3 +137,34 @@ Ejemplo: entrada_por_argumentos.py 'Texto cualquiera' 3
 ```
 
 En esta ocasión el programa devuelve un error por que no se cumple la condición que hemps establecido, es decir, que el programa tenga 3 argumentos, contando como el nombre del archivo del propio programa como primer argumento.
+
+## Salida de datos
+
+Para manejarse ágilmente en Python es necesario conocer bien cómo manejar las salidas de datos. Hasta ahora hemos visto cómo mostrar por pantalla cadenas de texto o variables de diferentes tipos. Veamos un ejemplo creando un nuevo archivo `salida_por_pantalla.py`:
+
+```python
+texto = 'me llamo Javier'
+numero = 3
+
+print('Hola,', texto, 'y mi número favorito es el', numero)
+```
+```bash
+python salida_por_pantalla.py
+Hola me llamo Javier y mi número favorito es el 3
+```
+
+Esta es una manera muy simple de imprmimir cadenas de texto mezcladas con variables de diferentes tipos, pero si queremos tener un mayor control sobre las variables que queremos imprimir debemos comenzar a usar un formato de escritura de las cadenas de carácteres, en Python se hace con el método `.format()`, por ejemplo:
+
+```python
+texto = 'me llamo Javier'
+numero = 3
+
+print('Hola, {} y mi número favorito es el {}'.format(texto, numero))
+```
+```bash
+python salida_por_pantalla.py
+Hola me llamo Javier y mi número favorito es el 3
+```
+
+Como se puede ver, hemos creado todo el contenido a imprimir dentro de la función `print()` y hemos añadido unas referencias mediante llaves `{}` donde irá el valor de las variables que se declaran dentro del método `.format()`, respetando el mismo orden y separadas por coma. Al ejecutar el programa el resultado es el mismo.
+
