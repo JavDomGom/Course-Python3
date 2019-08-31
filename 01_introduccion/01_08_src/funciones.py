@@ -1,6 +1,8 @@
-nombre = 'Frank'
-
 def mi_funcion():
-    print(nombre)
+    return 'Hola', 77, [1, 2, 3]
 
-mi_funcion()
+cadena, numero, lista = mi_funcion()
+
+print(cadena)
+print(numero)
+print(lista)
