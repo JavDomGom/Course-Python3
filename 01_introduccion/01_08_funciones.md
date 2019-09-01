@@ -240,23 +240,50 @@ print(suma(27, -14))
 
 Es importante tener en cuenta que el mero hecho de definir parámetros dentro de los paréntesis de la función cuando definimos esta con `def` estamos creando variables locales, es decir, nombres de variables que solo estarán disponibles en el cuerpo de la función, en este caso las variables serán `a` y `b`.
 
-```python
-
-```
-```bash
-
-```
-
-
+Hemos visto que podemos especificar una serie de parámetros en la definición de una función y luego pasarle valores como argumentos a la hora de hacer uso de la función, pero tal y como lo hemos visto habrá una correlación entre los argumentos y los parámteros siguiendo estrictamente el orden en el que estñan definidos. Ahora vamos a ver cómo podemos usar argumentos con nombres o claves que hagan referencia a los nombres de los parámetros, de ese modo ya no importará el orden en el que se coloquen los argumentos, véase el siguiente ejemplo en un nuevo archivo llamado `resta_de_numeros.py`:
 
 ```python
+def resta(a, b):
+    return a - b
 
+print(resta(b=2, a=1))
 ```
 ```bash
-
+python3 resta_de_numeros.py
+-1
 ```
 
+A la hora de hacer uso de la función `resta()` le estamos diciendo que el parámtero `b` va a valer `2` y el parámetro `a` va a valer 1. Están desordenados, pero el resultado es el que se espera.
 
+En los parámetros de una función también podemos especificar valores por defecto, por ejemplo al parámetro `b` le vamos a asignar un valor por defecto de `5`. Esto quiere decir que ya no sería obligatorio especificar un valor para el parámetro `b`, y si no se especifica un valor para dicho su valor será siempre `5`.
+
+```python
+def resta(a, b=5):
+    return a - b
+
+print(resta(2))
+```
+```bash
+python3 resta_de_numeros.py
+-3
+```
+
+Si se especificara un valor para el parámetro `b` siempre tendrá preferencia el valor especificado, el valor por defecto se ignoraría:
+
+```python
+def resta(a, b=5):
+    return a - b
+
+print(resta(7, 3))
+```
+```bash
+python3 resta_de_numeros.py
+4
+```
+
+## Pasar información por valor y por freferencia
+
+Cuando enviamos información a una función generalmente se suele hacer como hemos visto hasta ahora, que es un envío de información por valor. Esto significa que se crea una copia de la información que enviamos en sus propias variables, variables locales. Pero hay un caso excepcional, las colecciones, listas, diccionarios y conjuntos, estos datos se envían por referencia. Eso significa que en lugar de manejar una copia del dato dentro de la función estaremos manejando el dato original, por lo que si le realizamos alguna modificación los cambios se verán reflejados en el exterior, porque hacen referencia a la variable externa.
 
 ```python
 
