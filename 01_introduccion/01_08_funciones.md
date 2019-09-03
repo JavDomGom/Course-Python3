@@ -443,3 +443,40 @@ python3 funcion_recursiva.py
 ```
 
 En este ejemplo se va multiplicando el número `5` por si mismo menos uno, hasta llegar a `1`, entonces para. Como resultado da `120`, que es el factorial de `5`.
+
+## Funciones integradas en Python
+
+Existen una serie de funciones que vienen integradas en el lenguaje Python. Muchas de ellas ya las estamos utilizando desde el comienzo de esta documentación, por ejemplo la función `print()` para imprmir información por pantalla, la función `format()` para darle formato a la información, las funciones `range()` y `enumerate()` para hacer más fáciles las ieraciones de algunos datos, etc. Pero existen muchas otras, en este punto veremos algunas de ellas, y para ello vamos a crear el archivo `funcion_integrada.py`.
+
+Por ejemplo, existen algunas funciones, que también hemos utilizado anteriormente, que sirven para convertir información de un tipo a otro, esto se conoce como *casting* , como es el caso de las funciones `int()`, `float()`, `str()`, `list()`, etc.
+
+Veamos un ejemplo en el que tenemos una variable de tipo cadena de texto o *string* y mediante la función `int()` vamos a convertirla en una variable con un dato de tipo entero o *integer*:
+
+```python
+numero = '3'
+print('Aquí la variable numero tiene un valor de {} de tipo {}'.format(numero, type(numero)))
+
+numero = int('3')
+print('Aquí la variable numero tiene un valor de {} de tipo {}'.format(numero, type(numero)))
+```
+```bash
+python3 funcion_integrada.py
+Aquí la variable numero tiene un valor de 3 de tipo <class 'str'>
+Aquí la variable numero tiene un valor de 3 de tipo <class 'int'>
+```
+
+Lo mismo con los números de coma flotante o *float*, podremos usar la función `float()` para hacer el *casting* de un valor de tipo cadena de texto o *string* a un dato de tipo *float* de la siguiente manera:
+
+```python
+numero = '3.14'
+print('Aquí la variable numero tiene un valor de {} de tipo {}'.format(numero, type(numero)))
+
+numero = float('3.14')
+print('Aquí la variable numero tiene un valor de {} de tipo {}'.format(numero, type(numero)))
+```
+```bash
+python3 funcion_integrada.py
+Aquí la variable numero tiene un valor de 3.14 de tipo <class 'str'>
+Aquí la variable numero tiene un valor de 3.14 de tipo <class 'float'>
+```
+
