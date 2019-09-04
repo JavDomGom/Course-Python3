@@ -456,7 +456,7 @@ Veamos un ejemplo en el que tenemos una variable de tipo cadena de texto o *stri
 numero = '3'
 print('Aquí la variable numero tiene un valor de {} de tipo {}'.format(numero, type(numero)))
 
-numero = int('3')
+numero = int(numero)
 print('Aquí la variable numero tiene un valor de {} de tipo {}'.format(numero, type(numero)))
 ```
 ```bash
@@ -471,7 +471,7 @@ Lo mismo con los números de coma flotante o *float*, podremos usar la función 
 numero = '3.14'
 print('Aquí la variable numero tiene un valor de {} de tipo {}'.format(numero, type(numero)))
 
-numero = float('3.14')
+numero = float(numero)
 print('Aquí la variable numero tiene un valor de {} de tipo {}'.format(numero, type(numero)))
 ```
 ```bash
@@ -480,3 +480,142 @@ Aquí la variable numero tiene un valor de 3.14 de tipo <class 'str'>
 Aquí la variable numero tiene un valor de 3.14 de tipo <class 'float'>
 ```
 
+También podemos hacerlo a la inversa, tomar una variable de tipo entero y convertirla en un dato de tipo *string*, por ejemplo:
+
+```python
+numero = 3
+print('Aquí la variable numero tiene un valor de {} de tipo {}'.format(numero, type(numero)))
+
+numero = str(numero)
+print('Aquí la variable numero tiene un valor de {} de tipo {}'.format(numero, type(numero)))
+```
+```bash
+python3 funcion_integrada.py
+Aquí la variable numero tiene un valor de 3 de tipo <class 'int'>
+Aquí la variable numero tiene un valor de 3 de tipo <class 'str'>
+```
+
+Existen otras funciones integradas en Python que no sservirán para convertir datos numéricos en diferentes bases, es decir, los números en base 10 o decimales como `1`, `2`, `3`, ... a números en base 2 o binarios como `0000`, `0001`, `0010`, ... mediante la función integrada `bin()`, por ejemplo:
+
+```python
+a = 0
+b = 1
+c = 2
+
+print('Decimal\tBinario')
+print('{}\t{}'.format(a, bin(a)))
+print('{}\t{}'.format(b, bin(b)))
+print('{}\t{}'.format(c, bin(c)))
+```
+```bash
+python3 funcion_integrada.py
+Decimal	Binario
+0       0b0
+1       0b1
+2       0b10
+```
+
+En este ejemplo el número binario se muestra siempre con los dos carácteres `0b` por la izquierda para identificarlo como tal, y a continuación los bits `0` o `1` equivalentes al número decimal original.
+
+También podemos convertir un número en base decimal a base 16 o hexadecimal con la función integrada `hex()`, por ejemplo
+
+```python
+a = 15
+b = 27
+c = 209
+
+print('Decimal\tHexadecimal')
+print('{}\t{}'.format(a, hex(a)))
+print('{}\t{}'.format(b, hex(b)))
+print('{}\t{}'.format(c, hex(c)))
+```
+```bash
+python3 funcion_integrada.py
+Decimal	Hexadecimal
+15      0xf
+27      0x1b
+209     0xd1
+```
+
+En este ejemplo el número hexadecimal se muestra siempre con los dos carácteres `0x` por la izquierda para identificarlo como tal, y a continuación los carácteres que van del `0` al `9` y letras que van desde la `a` hasta la `f`, representando al número decimal original.
+
+Si quisieramos hacerlo al revés, es decir, convertir un número binario o hezadecimal a un número entero en base decimal, podríamos hacerlo con la función `int()` del siguiente modo:
+
+```python
+binario = '0b10'
+hexadecimal = '0xd1'
+
+print('Bin\tDec')
+print('{}\t{}'.format(binario, int(binario, 2)))
+print('-----------')
+print('Hex\tDec')
+print('{}\t{}'.format(hexadecimal, int(hexadecimal, 16)))
+```
+```bash
+python3 funcion_integrada.py
+Bin     Dec
+0b10    2
+-----------
+Hex     Dec
+0xd1    209
+```
+
+La función integrada `abs()` devuelve el valor absoluto de un número, es decir, le quita el signo a los números, por ejemplo:
+
+```python
+numero = -17
+
+print(abs(numero))
+```
+```bash
+python3 funcion_integrada.py
+17
+```
+
+La función `round()` redondea un número decimal, al alza o a la baja, dependiendo del número, por ejemplo:
+
+```python
+a = 5.5
+b = 5.4
+
+print(round(a))
+print(round(b))
+```
+```bash
+python3 funcion_integrada.py
+6
+5
+```
+
+
+
+```python
+
+```
+```bash
+python3 
+```
+
+
+```python
+
+```
+```bash
+python3 
+```
+
+
+```python
+
+```
+```bash
+python3 
+```
+
+
+```python
+
+```
+```bash
+python3 
+```
