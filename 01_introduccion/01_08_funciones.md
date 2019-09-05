@@ -1,4 +1,4 @@
-## Funciones
+# Funciones
 
 Las funciones son fragmentos de código que se pueden invocar o ejecutar varias veces gracias a un nombre único que las identifica. Estas pueden recibir y devolver información para comunicarse con el programa principal. Crearemos un archivo llamado `funciones.py` en el que iremos añadiendo código a medida que vayamos aprendiendo los conceptos y el funcionamiento de las funciones en Python.
 
@@ -572,50 +572,43 @@ python3 funcion_integrada.py
 17
 ```
 
-La función `round()` redondea un número decimal, al alza o a la baja, dependiendo del número, por ejemplo:
+La función `round()` redondea un número decimal, al alza o a la baja, dependiendo del valor que tenga el número float, por ejemplo:
 
 ```python
 a = 5.5
 b = 5.4
+c = 7.1
 
 print(round(a))
 print(round(b))
+print(round(c))
 ```
 ```bash
 python3 funcion_integrada.py
 6
 5
+7
 ```
 
-
+Una función integrada que ya hemos utilizado anteriormente es `len()`, que devuelve la longitud de un valor de tipo *string* o las diferentes colecciones como listas, tuplas, conjuntos o diccionarios. 
 
 ```python
+a = 'Hola mundo!'
+b = [0, 1, 2]
+c = ('a', 'b', 'c', 'd')
+d = {'nombre': 'Frank', 'apellido': 'Zappa'}
 
+print(len(a))
+print(len(b))
+print(len(c))
+print(len(d))
 ```
 ```bash
-python3 
+python3 funcion_integrada.py
+11
+3
+4
+2
 ```
 
-
-```python
-
-```
-```bash
-python3 
-```
-
-
-```python
-
-```
-```bash
-python3 
-```
-
-
-```python
-
-```
-```bash
-python3 
-```
+Hemos visto algunas de las funciones integradas más conocidas o más utilizadas, pero existen muchas más, como `help()` para invocar la ayuda de Python, o `exit()` para realizar una salida forzada del programa. Toda la información acerca de las funciones integradas en Python se puede encontrar en internet.
