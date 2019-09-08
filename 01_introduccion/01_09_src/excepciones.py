@@ -1,10 +1,13 @@
-lista = [1, 2, 3]
+try:
+        a = float(input('Introduce un número: '))
+        b = 3
 
-
-def comprueba_lista(l):
-    print(l)
-    if len(l) > 0:
-        l.pop()
-        comprueba_lista(l)
-
-comprueba_lista(lista)
+        print('{}/{} = {}'.format(b, a, b/a))
+except TypeError:
+        print('No se puede dividir una cadena de texto entre un número.')
+except ValueError:
+        print('Debes introducir un número.')
+except ZeroDivisionError:
+        print('No se puede dividir por cero.')
+except Exception as e:
+        print(type(e).__name__)

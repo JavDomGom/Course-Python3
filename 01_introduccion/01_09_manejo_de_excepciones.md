@@ -96,3 +96,243 @@ python3 excepciones.py
 ```
 
 Al ejecutar el programa obtendremos el mismo resultado, pero habremos optimizado mucho la ejecución mediante el uso de una función recursiva.
+
+Otro erro bastante común es cuando leemos un valor por teclado e intentamos realizar una operación matemática con ese valor. Todos los valores que se introducen por teclado son de tipo *string* a no ser que hagamos un *casting* y lo convirtamos en otro tipo diferente. A continuación un ejemplo en el que se reproduce el error que devuelve el programa al no convertir los datos introducidos por teclado a un número entero (`int`) o de coma flotante (`float`):
+
+```python
+a = input('Introduce un número: ')
+b = 3
+
+print('{}/{} = {}'.format(a, b, a/b))
+```
+```bash
+python3 excepciones.py
+Introduce un número: 15
+Traceback (most recent call last):
+  File "excepciones.py", line 5, in <module>
+    print('{}/{} = {}'.format(a, b, a/b))
+TypeError: unsupported operand type(s) for /: 'str' and 'int'
+```
+
+Como se ha comentado antes, para solventar este error bastaría con hacer un *casting* del `input`, en este caso a número de coma flotante o `float` de la siguiente manera:
+
+```python
+a = float(input('Introduce un número: '))
+b = 3
+
+print('{}/{} = {}'.format(a, b, a/b))
+```
+```bash
+python3 excepciones.py
+Introduce un número: 15
+15.0/3 = 5.0
+```
+
+Ahora ya no devuelve un error, hace el cálculo correctamente. Pero, ¿y si el usuario introducen unas letras en vez de un número? Obtedríamos el siguiente error:
+
+```bash
+python3 excepciones.py
+Introduce un número: abc
+Traceback (most recent call last):
+  File "excepciones.py", line 1, in <module>
+    a = float(input('Introduce un número: '))
+ValueError: could not convert string to float: 'abc'
+```
+
+Esto sucede porque no se puede convertir una cadena de texto a un número `float`. ¿Cómo entonces podremos asegurarnos que el usuario va a introducir un número y cómo se puede controlar el programa en caso de que este no lo haga correctamente? Para ello existen las excepciones, las cuales trataremos en el siguiente punto.
+
+## Excepciones
+
+Una excepción es un bloque de código excepcional que nos permitirá continuar con la ejecución del programa aunque ocurra un error. En el punto anterior hemos visto un programa que pide introducir un número, pero no estábamos controlando el caso de error en el que el usuario introduzca por teclado algo diferente de un número. Vamos a crear una excepción para este caso. Para ello debemos colocar todo el código propenso a errores dentro del cuerpo de una sentencia llamada `try`. A continuación se creará otro bloque llamado `except` y este contendrá en su cuerpo aquel código que queremos que se ejecute cuando exista algún error en el código que hay dentro de `try`, veamos el código:
+
+```python
+try:
+        a = float(input('Introduce un número: '))
+        b = 3
+
+        print('{}/{} = {}'.format(a, b, a/b))
+except:
+        print('Ha ocurrido un error, introduce bien el número.')
+```
+```bash
+python3 excepciones.py
+Introduce un número: abc
+Ha ocurrido un error, introduce bien el número.
+```
+
+Como se puede ver, el programa intenta capturar un número por teclado, pero si el usuario no introduce un número el programa no falla, simplemente ejecuta el código que hay dentro de `except`, en este caso solo un printo con un mensaje personalizado de error. Solo hay una pega, tal y como está hecho el programa ahora mismo, en caso de error solo se imprime un mensaje y el programa finaliza. Podría interesarnos que además de mostrar ese mensaje que volviera a pedir introducir un número de forma indefinida hasta que el usuario intoduzca un valor correctamente. Esto lo podemos conseguir introduciéndo el código actual dentro del cuerpo de un bucle while, por ejemplo:
+
+```python
+while True:
+        try:
+                a = float(input('Introduce un número: '))
+                b = 3
+
+                print('{}/{} = {}'.format(a, b, a/b))
+                break   # Si todo ha ido bien se interrumpe el bucle.
+        except:
+                print('Ha ocurrido un error, introduce bien el número.')
+```
+```bash
+python3 excepciones.py
+Introduce un número: abc
+Ha ocurrido un error, introduce bien el número.
+Introduce un número: wgr
+Ha ocurrido un error, introduce bien el número.
+Introduce un número: 27
+27.0/3 = 9.0
+```
+
+Tras dos intentos fallidos hemos introducido un número correctamente y el programa ejecuta el código que hay en el cuerpor de l bloque `try` finalizando así las iteraciones del bucle y saliendo del programa con éxito.
+
+De este modo ya estaríamos haciendo uso de las excepciones de Python, pero las excepciones abarcan mucho más que esto. En primer lugar permite añadir un bloque de código `else` para ejecutar un código en caso de que todo vaya correctamente, y ese es el lugar idóneo para poner la sentencia `break` que hemos añadido antes dentre del bloque `try`, veamos cómo mejorarlo:
+
+```python
+while True:
+        try:
+                a = float(input('Introduce un número: '))
+                b = 3
+
+                print('{}/{} = {}'.format(a, b, a/b))
+        except:
+                print('Ha ocurrido un error, introduce bien el número.')
+        else:
+            print('Todo ha ido bien, saliendo del programa.')
+            break   # Si todo ha ido bien se interrumpe el bucle.
+```
+```bash
+python3 excepciones.py
+Introduce un número: wadf
+Ha ocurrido un error, introduce bien el número.
+Introduce un número: drgb
+Ha ocurrido un error, introduce bien el número.
+Introduce un número: 39
+39.0/3 = 13.0
+Todo ha ido bien, saliendo del programa.
+```
+
+## Múltiples excepciones
+
+Python permite crear múltiples excepciones medinate identificadores. Pero para poder usar el identificador correcto primer debemos saber qué identificadores tenemos que usar en cada caso. Podríamos saberlo de antemano, pero es interesante ver cómo obtener el nombre del identificador para cada caso. Por ejemplo, vamos a reproducir el primer error que hemos visto en este capítulo, en el que no hacíamos *casting* del valor introducido por teclado y daba un error al no poder usar una cadena de caracteres para realizar un cálculo como la división. Para obtener el identificador debemos escribir el siguiente codigo:
+
+```python
+try:
+        a = input('Introduce un número: ')
+        b = 3
+
+        print('{}/{} = {}'.format(a, b, a/b))
+except Exception as e:
+        print(type(e).__name__)
+```
+```bash
+python3 excepciones.py
+Introduce un número: 15
+TypeError
+```
+
+En este caso obtenemos el identificador `TypeError` para este tipo de excepciones. Una vez que ya sabemos el identificador podemos hacer una excepción exclusiva con un mensaje personalizado para cuando nuestro programa dé un error de este tipo, por ejemplo:
+
+```python
+try:
+        a = input('Introduce un número: ')
+        b = 3
+
+        print('{}/{} = {}'.format(a, b, a/b))
+except TypeError:
+        print('No se puede dividir una cadena de texto entre un número.')
+except Exception as e:
+        print(type(e).__name__)
+```
+```bash
+python3 excepciones.py
+Introduce un número: 15
+No se puede dividir una cadena de texto entre un número.
+```
+
+Solventaremos el error del mismo modo que lo hicimos anteriormente, introduciendo un *casting* para convertir el valor introducido por teclado a un dato de tipo `float`, pero volveremos a ejecutar el programa introduciendo por teclado una cadena de caracteres, así averiguaremos el identificador de este nuevo tipo de error:
+
+```python
+try:
+        a = float(input('Introduce un número: '))
+        b = 3
+
+        print('{}/{} = {}'.format(a, b, a/b))
+except TypeError:
+        print('No se puede dividir una cadena de texto entre un número.')
+except Exception as e:
+        print(type(e).__name__)
+```
+```bash
+python3 excepciones.py
+Introduce un número: abc
+ValueError
+```
+
+Este nuevo error que da cuando intentas convertir a `float` una cadena de texto, tiene un identificador llamdo `ValueError`, así que ya podemos hacer otra excepción personalizada para cuando nuestro programa tenga este tipo de errores, por ejemplo:
+
+```python
+try:
+        a = float(input('Introduce un número: '))
+        b = 3
+
+        print('{}/{} = {}'.format(a, b, a/b))
+except TypeError:
+        print('No se puede dividir una cadena de texto entre un número.')
+except ValueError:
+        print('Debes introducir un número.')
+except Exception as e:
+        print(type(e).__name__)
+```
+```bash
+python3 excepciones.py
+Introduce un número: abc
+Debes introducir un número.
+```
+
+Ahora nuestro programa controla dos tipos de errores mediante los identificadores `TypeError` y `ValueError`, y además tenemos una tercera excepción que nos devuelve el nombre del identificador en caso de que se trate de un error de tipo distinto a los dos anteriores. Veamos qué pasa si ejecutamos nuestro programa indicando el número `0` por teclado y el número introducido es el divisor:
+
+```python
+try:
+        a = float(input('Introduce un número: '))
+        b = 3
+
+        print('{}/{} = {}'.format(b, a, b/a))   # Orden cambiado.
+except TypeError:
+        print('No se puede dividir una cadena de texto entre un número.')
+except ValueError:
+        print('Debes introducir un número.')
+except Exception as e:
+        print(type(e).__name__)
+```
+```bash
+python3 excepciones.py
+Introduce un número: 0
+ZeroDivisionError
+```
+
+Obtenemos un nuevo identificador para las excepciones en las que se trata de dividir un número por cero, es algo que no está permitido, pues la división por cero es infinito. Hagamos una excpeción personalizada para este tipo de errores:
+
+```python
+try:
+        a = float(input('Introduce un número: '))
+        b = 3
+
+        print('{}/{} = {}'.format(b, a, b/a))
+except TypeError:
+        print('No se puede dividir una cadena de texto entre un número.')
+except ValueError:
+        print('Debes introducir un número.')
+except ZeroDivisionError:
+        print('No se puede dividir por cero.')
+except Exception as e:
+        print(type(e).__name__)
+```
+```bash
+python3 excepciones.py
+Introduce un número: 0
+No se puede dividir por cero.
+```
+
+## Invocación de excepciones
+
+Sin duda las excepciones nos ayudan a tener un control más exaustivo sobre la ejecución de nuestro programa.
