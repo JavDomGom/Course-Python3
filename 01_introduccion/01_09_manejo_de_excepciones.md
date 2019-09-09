@@ -2,7 +2,7 @@
 
 En programación muchas veces podríamos tener un error de retorno a la hora de evaluar una expresión o de invocar a un método, función, procedimiento o clase, tanto de nuestro propio código como integrado en el lenguaje, tal y como ya hemos visto en el punto  anterior. Para poder tener un control más exhaustivo sobre el comportamiento de nuestro programa es muy importante hacer uso de las excepciones que el lenguaje nos permita, de ese modo podremos indicarle al programa qué hacer cuando algo no suceda como se espera. En este punto veremos cómo identificar los errores y cómo gestionarlos mediante excepciones.
 
-# Errores
+## Errores
 
 Cuando ejecutamos un programa podemos encontrarnos errores de diferentes tipos, por ejemplo errores sintácticos, que son aquellos que tienen que ver con la propia escritura del código, tales como un bloque de código mal indentado, un paréntesis sin cerrar, un carácter de más, la ausencia de un argumento cuando debería ser obligatorio, etc.
 
@@ -335,4 +335,25 @@ No se puede dividir por cero.
 
 ## Invocación de excepciones
 
-Sin duda las excepciones nos ayudan a tener un control más exaustivo sobre la ejecución de nuestro programa.
+Sin duda las excepciones nos ayudan a optimizar nuestros programas y tener un control más exaustivo sobre los errores. En este punto veremos cómo se peude llamar o invocar a una excepción más allá de las maneras que ya hemos visto.
+
+Vamos a definir una función que reciba un valor, pero si este valor es un valor especial, por ejemplo un valor nulo, llamaremos a una excepción de tipo `ValueError` que ya vimos anteriormente mediante una intrucción llamada `raise` seguida del identificador o tipo de error:
+
+```python
+def mi_funcion(algo=None):
+        if algo is None:
+                raise ValueError('Error, no se permite un valor nulo.')
+
+mi_funcion()
+```
+```bash
+python3 excepciones.py
+Traceback (most recent call last):
+  File "excepciones.py", line 5, in <module>
+    mi_funcion()
+  File "excepciones.py", line 3, in mi_funcion
+    raise ValueError('Error, no se permite un valor nulo.')
+ValueError: Error, no se permite un valor nulo.
+```
+
+Este es la manera en la que se puede invocar a una excepción directamente, haciendo uso de la instrucción `raise`, pero lo más común es que el programador personalice cada posible error utilizando las intrucciones `try` y `exception`, normalmente no se suelen invocar excepciones de esta manera.

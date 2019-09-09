@@ -1,13 +1,5 @@
-try:
-        a = float(input('Introduce un número: '))
-        b = 3
+def mi_funcion(algo=None):
+        if algo is None:
+                raise ValueError('Error, no se permite un valor nulo.')
 
-        print('{}/{} = {}'.format(b, a, b/a))
-except TypeError:
-        print('No se puede dividir una cadena de texto entre un número.')
-except ValueError:
-        print('Debes introducir un número.')
-except ZeroDivisionError:
-        print('No se puede dividir por cero.')
-except Exception as e:
-        print(type(e).__name__)
+mi_funcion()
