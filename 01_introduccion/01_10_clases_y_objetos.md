@@ -261,18 +261,246 @@ python3 clases_y_objetos.py
 
 Si nos fijamos en cada caso nos devuelve el nombre de la clase a la que pertenece, y es que en Python en realidad todo son objetos de diferentes clases. Cuando definimos el valor `10`, o el valor `'Hola'` en realidad estamos creando objetos de las clases `int` y `str`. esa es la razón de que algunas de las clases que manejamos en Python tengan sus propios métodos. Todas las clases en Python tienen unos método en común, pero algunas clases como las cadenas de carácteres, las listas o los diccionarios tienen su propios métodos que podremos utilizar para manipularlas de forma más cómoda. Todos eso métodos propios de estas clases vienen definidos en la propia definición de clase de cada tipo de dato en el lenguaje Python.
 
-```python
+## Atributos y métodos de clase
 
-```
-```bash
-python3
-```
+Para estudiar este punto seguiremos con el ejemplo del molde de galletas y las galletas que salen de él, no todas serán iguales. Siguiendo con la metáfora, todas las galletas compartirán la misma forma y tamaño, pero pueden hacerse de diferentes colores, sabores o ingredientes. He ahí el que sus atributos tengan diferentes valores y que cada galleta sea única.
 
-
+La gracia de la programación orientada a objetos es que los objetos puedan tener sus propios atributos, una especie de variables internas a las que nos podremos referir con un puntito después del nombre del objeto y a continuación el nombre del atributo. Estos atributos se pueden definir fuera de la clase y se crearían automáticamente solo para esa instancia. Para poder verlo vamos a crear un nuevo archivo llamado `galletas.py` con el siguiente código:
 
 ```python
+class Galleta:
+    pass
 
+g = Galleta()
+g.sabor = 'salada'
+g.color = 'amarillo'
+
+print('Esta galleta es de color {} y sabe {}'.format(g.color, g.sabor))
 ```
 ```bash
-python3
+python3 galletas.py
+Esta galleta es de color amarillo y sabe salada
+```
+
+Al objeto `g` de la clase `Galleta` acabamos de asignarle dos atributos que no tenía cuando fue creado. No es una manera muy recomendable de hacerlo, ya que si creamos un nuevo objeto de la clase `Galleta` este no tendría esos atributos por defecto y tendríamos que gestionar si queremos que todas las galletas los tengan o no, aunque tengan diferentes valores. Para ello es mejor definir los atributos en el cuerpo de la clase, de modo que todos los objetos creados de esta clase tendrán los mismos atributos, por ejemplo:
+
+```python
+class Galleta:
+    sabor = 'salada'
+    color = 'amarillo'
+
+g1 = Galleta()
+g2 = Galleta()
+
+print('La galleta 1 es de color {} y sabe {}'.format(g1.color, g1.sabor))
+print('La galleta 2 es de color {} y sabe {}'.format(g2.color, g2.sabor))
+```
+```bash
+python3 galletas.py
+La galleta 1 es de color amarillo y sabe salada
+La galleta 2 es de color amarillo y sabe salada
+```
+
+Como podemos ver, no es necesario asignar atributos cada vez que se crea un objeto de la clase `Galleta`, ya se definen en la propia clase. Lo malo de este método es que todas tendrán los mismos valores por defecto, por lo que si saldrían todas las galletas iguales.
+
+Para que cada objeto tenga sus propios valores de atributos lo mejor es definirlos en el momento que se crea el objeto, para ello es necesario conocer dos conceptos nuevos de las clases, uno es el método especial llamdo `__init__()`, y el otro es la palabra reservada `self`. Vamos a desarrollar de nuevo la clase introduciendo estos dos nuevos conceptos.
+
+```python
+class Galleta:
+
+    def __init__(self, sabor, color):        
+        self.sabor = sabor
+        self.color = color
+```
+
+El método especial `__init()__` también se conoce como constructor de la clase, es el método que se va a ejecutar siempre que instanciemos un objeto de la misma, sin que sea necesario invocarlo. La palabra reservada `self` la tienen todos los métodos de todas las clases y hace referencia al propio objeto y sirve para diferencias entre el ámbito de la clase y el de un método. Es un requisito implícito en todos los métodos ya que por defecto al llamar a un método se pasa automáticamente al propio objeto. Esto ocurre de forma transparente en la llamada, pero es obligatorio en la definición.
+
+Ahora debemos crear dos objetos de la clase `Galleta`, pero esta vez deberemos indicar entre paréntesis los atributos que espera recibir obligatoriamente el constructor de la clase, que en este caso son `sabor` y `color`.
+
+```python
+g1 = Galleta('salada', 'amarilla')
+g2 = Galleta('dulce', 'verde')
+```
+
+Añadimos dos líneas para imprimir un mensaje por pantalla donde se puedan ver los atributos de las instancias `g1` y `g2`, para acceder al dato escribiremos a continuación del nombre del objeto un punto y el nombre del atributo de ese objeto.
+
+```python
+print('La galleta 1 es de color {} y sabe {}'.format(g1.color, g1.sabor))
+print('La galleta 2 es de color {} y sabe {}'.format(g2.color, g2.sabor))
+```
+
+Al ejecutar el programa obtendremos la siguiente salida:
+
+```bash
+python galletas.py
+La galleta 1 es de color amarilla y sabe salada
+La galleta 2 es de color verde y sabe dulce
+```
+
+Vamos a crear nuestros propios métodos de clase, por ejemplo un método llamado `chocolatear()` y otro método que se llame `tiene_chocolate()` con el siguiente código:
+
+```python
+class Galleta:
+
+    def __init__(self, sabor, color):
+        self.sabor = sabor
+        self.color = color
+        self.chocolate = False
+
+    def chocolatear(self):
+        self.chocolate = True
+
+    def tiene_chocolate(self):
+        if self.chocolate:
+            print('Si tiene chocolate')
+        else:
+            print('No tiene chocolate')
+```
+
+Se ha tenido que añadir un nuevo atributo llamado `chocolate` al constructor con un valor por defecto `False`. Si en algún momento del programa se invoca al método `chocolatear()` el valor del atributo `chocolate` se cambiará a `True`, si no permanecerá el valor por defecto. Y si se invoca al método `tiene_chocolate()` se comprobará el valor del atributo `chocolate` antes de imprimir un mensaje por pantalla diciendo si la galleta tiene o no tiene chocolate. Veamos un ejemplo de las líneas de código con algunas invocaciones y el resultaod de su ejecución:
+
+```python
+g1 = Galleta('salada', 'amarilla')
+g2 = Galleta('dulce', 'verde')
+
+print('\nEstado actual de las galletas')
+g1.tiene_chocolate()
+g2.tiene_chocolate()
+
+print('\nAñado chocolate a la primera galleta ...')
+g1.chocolatear()
+
+print('\nEstado actual de las galletas')
+g1.tiene_chocolate()
+g2.tiene_chocolate()
+```
+```bash
+python galletas.py
+
+Estado actual de las galletas
+No tiene chocolate
+No tiene chocolate
+
+Añado chocolate a la primera galleta ...
+
+Estado actual de las galletas
+Si tiene chocolate
+No tiene chocolate
+```
+
+Como se puede comprobar, ahora tenemos clases, objetos, atributos y métodos de clase que nos sirven para poder tener un control sobre el estado de las cosas de una manera mucho más sencilla.
+
+## Métodos especiales
+
+Aparte del método `__init__()` existen muchos otros métodos especiales en Python. Para poder ver algunos ejemplos vamos a crear un nuevo archivo llamado `peliculas.py` con el siguiente código en el que volveremos a ver el constructor de la clase con tres atributos, `titulo`, `duracion` y `lanzamiento`.
+
+```python
+class Pelicula:
+
+    # Contructor de clase.
+    def __init__(self, titulo, duracion, lanzamiento):
+        self.titulo = titulo
+        self.duracion = duracion
+        self.lanzamiento = lanzamiento
+        print('Se ha creado la película {}'. format(self.titulo))
+```
+
+Ahora crearemos un objeto de esta clase pasándole como argumentos los valores que espera recibir el constructor para sus atributos:
+
+```python
+p = Pelicula('El padrino', 175, 1972)
+```
+
+Si ejecutamos el programa obtendremos la siguiente salida:
+
+```bash
+python peliculas.py
+Se ha creado la película El padrino
+```
+
+Ya conocemos el método que hace de constructor de la clase, pero veamos otro método especial que hace de destructor, es un método llamado `__del__()` y únicamente se ejecutará cuando se borre una instancia.
+
+```python
+    # Destructor de la clase
+    def __del__(self):
+        print('Se está borrando la película {}'.format(self.titulo))
+```
+
+Ahora creamos el objeto `p` de la clase `Pelicula` y a continuación borramos el objeto mediante el método integrado `del()`.
+
+```python
+p = Pelicula('El padrino', 175, 1972)
+
+del(p)
+```
+
+Al ejecutar el programa obtendremos la siguiente salida por pantalla.
+
+```bash
+python peliculas.py
+Se ha creado la película El padrino
+Se está borrando la película El padrino
+```
+
+Otro método especial es el método llamado `__str__()` que serivirá para aquellas ocasiones en las que se pasa el nombre del objeto por la función integrada `str()` de Python, en cuyo caso ya no se mostrará una cadena con la dirección de memoria en la que está almacenado el objeto, si no un mensaje personalizado. Por ejemplo:
+
+```python
+    # Redefinimos el método string
+    def __str__(self):
+        return '{} lanzada en {} con una duración de {} minutos'.format(self.titulo, self.lanzamiento, self.duracion)
+```
+
+Ahora eliminamos la línea que escribimos anteriormente con la función integrada `del()` y ponemos una línea nueva invocando a la función integrada `str()` a la que le pasaremos el nombre de nuestro objeto `p`, por ejemplo:
+
+```python
+p = Pelicula('El padrino', 175, 1972)
+
+print(str(p))
+```
+
+Al ejecutar el programa obtendremos la siguiente salida por pantalla.
+
+```bash
+python peliculas.py
+Se ha creado la película El padrino
+El padrino lanzada en 1972 con una duración de 175 minutos
+Se está borrando la película El padrino
+```
+
+Si nos fijamos bien, se imprimern tres mensajes, el primero es el que se ejecuta en el contructor, el segundo es nuestra instrucción de imprimir el objeto en formato *string* y el tercero es el que se ejecuta al destruír el objeto. ¿Por qué se ejecuta el tercer mensaje? Porque aunque no indiquemos en el código del programa que queremos destruír el objeto, este se destruirá al finalizar el programa, por lo tanto siempre se ejecutará. Existen muchos otros métodos especiales, pero estos tres son los más utilizados.
+
+## Objetos dentro de objetos
+
+En Python podemos crear objetos que tengan  atributos cuyo valor pueden ser objetos de otras clases. Al principio de esta sección hemos visto un ejemplo en el que usábamos la clase `Cliente` y la clase `Empresa`. En ese ejemplo el objeto de la clase `Empresa` contenía una lista de objetos de la clase `Cliente`. Ahora vamos a hacer un catálogo para poder manejar las películas del ejemplo anterior. Modifiquemos ligeramente la clase `Pelicula` que teníamos definida en el archivo `peliculas.py` del punto anterior. Eliminemos el método especial destructor y cambiemos el mensaje que devuelve el método especial `__str__()`, por ejemplo:
+
+```python
+class Pelicula:
+
+    # Contructor de clase.
+    def __init__(self, titulo, duracion, lanzamiento):
+        self.titulo = titulo
+        self.duracion = duracion
+        self.lanzamiento = lanzamiento
+        print('Se ha creado la película {}'.format(self.titulo))
+
+    # Redefinimos el método string
+    def __str__(self):
+        return '{} ({})'.format(self.titulo, self.lanzamiento)
+```
+
+Hagamos a continuación una nueva clase llamada `Catalogo`, esta clase tendrá un atributo llamado `peliculas` y tendrá por valor una lista vacía. Además tendrá un método constructor que inicializa la lista de películas vacía si no se le especifica ninguna lista o con una ya existente si se especificara como argumento a la hora de instanciar el objeto de la clase `Catalogo`. También tendrá dos métodos, el método `agregar()` que simplemente hace un `append` a la lista `peliculas` de la película que se le pase como argumento, y el método `mostrar()`, que simplemente hace un `print()` del objeto película.
+
+```python
+class Catalogo:
+    peliculas = []
+
+    def __init__(self, peliculas=[]):
+        self.peliculas = peliculas
+
+    def agregar(self, p):
+        self.peliculas.append(p)
+
+    def mostrar(self):
+        for p in self.peliculas:
+            print(p)
 ```
