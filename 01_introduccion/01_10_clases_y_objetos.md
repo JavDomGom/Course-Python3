@@ -504,3 +504,39 @@ class Catalogo:
         for p in self.peliculas:
             print(p)
 ```
+
+Ahora vamos a crear una película instanciando un objeto de la clase `Pelicula`, para ello añadiremos a nuestro código la siguiente línea:
+
+```python
+p = Pelicula('El padrino', 175, 1972)
+```
+
+Además crearemos una instancia de la clase `Catalogo` pasándole como argumento una lista con nuestra películ `p` anteriormente creada:
+
+```python
+c = Catalogo([p1])
+```
+
+Esta es una manera de crear una instancia u objeto de la clase `Catalogo` y meter una instancia u objeto de la clase `Película` dentro. Pero también podemos hacerlo de una forma en la que no sea necesario crear la instancia previamente, si no directamente, por ejemplo, vamos a añadir una segunda película al catálogo `c` invocando al método `agregar()` de nuestro catálogo:
+
+```python
+c.agregar(Pelicula('El padrino II', 202, 1974))
+```
+
+Finalmente vamos invocar al método `mostrar()` de la clase `Catalogo` y ejecutaremos el programa para ver que ha registrado correctamente las dos películas.
+
+```python
+c.mostrar()
+```
+```bash
+python peliculas.py
+Se ha creado la película El padrino
+Se ha creado la película El padrino II
+El padrino (1972)
+El padrino II (1974)
+```
+
+Podemos mejorar nuestro programa añadiendo métodos adicionales a la clase `Catalogo` por ejemplo para borrar películas o modificar las que ya existen.
+
+## Encapsulación de atributos
+

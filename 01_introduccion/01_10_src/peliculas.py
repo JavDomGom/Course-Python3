@@ -24,3 +24,10 @@ class Catalogo:
     def mostrar(self):
         for p in self.peliculas:
             print(p)
+
+p1 = Pelicula('El padrino', 175, 1972)
+
+c = Catalogo([p1])
+c.agregar(Pelicula('El padrino II', 202, 1974))
+
+c.mostrar()
