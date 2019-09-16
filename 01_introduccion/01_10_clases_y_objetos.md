@@ -540,3 +540,88 @@ Podemos mejorar nuestro programa añadiendo métodos adicionales a la clase `Cat
 
 ## Encapsulación de atributos
 
+Hasta ahora hemos visto cómo en Python se puede acceder a los atributos y métodos de una clase de una manera muy sencilla. Esto es por que tal y como los hemos visto tienen un acceso público, pero en algunas ocasiones podría interesarnos que no fuera así, y que estos no se puedan ejecutar desde fuera, en cuyo caso tendrían un acceso privado, que permanezcan encapsulados.
+
+La encapsulación es una funcionalidad que tienen muchos lenguajes de programación para impedir acceso externo a atributos y métodos. Pero Python no ofrece esta funcionalidad de base, aún así, se puede simular un comportamiento parecido precediendo el nombre de estos atributos o métodos con dos guiones bajos (__). Para poder ver algun ejemplo vamos a crear un nuevo archivo llamado `encapsulacion.py` en el que vamos a crear una clase `Ejemplo` con un atributo privado llamado `__atributo_privado` y un método privado llamado `__metodo_privado()`:
+
+```python
+class Ejemplo:
+    __atributo_privado = 'Soy un atributo inalcanzable desde fuera.'
+
+    def __metodo_privado(self):
+        print('Soy un método inalcanzable desde fuera.')
+```
+
+Ahora vamos a crear una instancia de esta clase y vamos a intentar acceder a su atributo `__atributo_privado` desde fuera:
+
+```python
+print(e.__atributo_privado)
+```
+
+Si ejecutamos el programa ahora obtendremos el siguiente error:
+
+```bash
+python3 encapsulacion.py
+Traceback (most recent call last):
+  File "encapsulacion.py", line 9, in <module>
+    print(e.__atributo_privado)
+AttributeError: 'Ejemplo' object has no attribute '__atributo_privado'
+```
+
+El error indica que no existe el atributo `__atributo_privado`, pero en realidad no es así, si existe, solo que solo se puede invocar o utilizar dentro de la clase, no desde un objeto ya instanciado, es decir, desde fuera. Borremos esta última línea en la que invocábamos desde fuera al atributo y probemos ahora a invocar al método `__metodo_privado()` desde fuera también:
+
+```python
+e.__metodo_privado()
+```
+
+El ejecutarlo obtenemos este otro error:
+
+```bash
+encapsulacion.py
+Traceback (most recent call last):
+  File "01_introduccion/01_10_src/encapsulacion.py", line 9, in <module>
+    e.__metodo_privado()
+AttributeError: 'Ejemplo' object has no attribute '__metodo_privado'
+```
+
+El error es del mismo tipo, indica que no existe el método `__metodo_privado()`, pero si existe, solo que es privado y también es solo accesible desde dentro de la clase.
+
+Para poder hacer uso de los atributos y métodos privados desde fuera tendremos que crear un nuevo método público que haga de puente y que sea él el que tiene acceso a los elementos privados desde dentro de la clase, por ejemplo:
+
+```python
+def mostrar_atributo(self):
+        return self.__atributo_privado
+```
+
+Eliminamos la anterior línea en la que intentábamos acceder al atributo o el método privado y escribimos la siguiente línea en la que llamamos al método público `mostrar_atributo()`:
+
+```python
+print(e.mostrar_atributo())
+```
+
+Si ejecutamos de nuevo el programa obtendremos el valor del atributo privado correctamente:
+
+```bash
+python3 encapsulacion.py
+Soy un atributo inalcanzable desde fuera.
+```
+
+Aplicando la misma técnica al método podremos acceder también al método privado creando una nuevo método público `mostrar_metodo()` que haga de puente, por ejemplo:
+
+```python
+def mostrar_metodo(self):
+        return self.__metodo_privado()
+```
+
+Ahora invocamos a este nuevo método público mediante la siguiente línea:
+
+```python
+e.mostrar_metodo()
+```
+
+Al ejecutar el programa de nuevo obtendremos la información del método privado `__metodo_privado()` pasando por el método público `mostrar_metodo()`:
+
+```bash
+python3 encapsulacion.py
+Soy un método inalcanzable desde fuera.
+```
