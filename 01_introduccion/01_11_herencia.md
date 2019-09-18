@@ -39,3 +39,48 @@ python3 producto.py
 Adorno
 Jarrón de porcelana con dibujos
 ```
+
+De momento tenemos algo que podría servirnos, pero no tiene mucho sentido mezclar tantos atributos tan diferentes como `isbn` y `productor`. Además, al crear un producto de cualquier tipo tendremos que recorrer y establecer valor a todos los atributos. Esto es poco eficiente, por lo que necesitaremos establecer de alguna manera una jerarquía y poner orden. La herencia de clases nos puede servir en estos casos, para ello tendremos que dividir el código en una Superclase y diferentes Subclases. En una Superclase agruparemos todos los atributos que sean comunes para todos los productos, por ejemplo en la clase `Producto`:
+
+```python
+class Producto:
+
+    def __init__(self, referencia, nombre, pvp, descripcion):
+        self.referencia = referencia
+        self.nombre = nombre
+        self.pvp = pvp
+        self.descripcion = descripcion
+```
+
+A esta clase `Producto` podemos añadirle el método especial `__str__()` para que devuelva una descripción del producto, por ejemplo:
+
+```python
+    def __str__(self):
+        return """\
+        REFERENCIA\t{}
+        NOMBRE\t\t{}
+        PVP\t\t{}
+        DESCRIPCIÓN\t{}""".format(self.referencia, self.nombre, self.pvp, self.descripcion)
+```
+
+Luego tendríamos que hacer tres Subclases, por ejemplo `Adorno`, `Libro` y `Alimento`, y cada clase con su atributos, pero inicialmente hagamos las calses sin contenido, solo con la palabra reservada `pass`. Empecemos por la sublcase `Adorno`. Para indicarle que es una sublcase de la clase `Producto` tenemos que añadirle el nombre de la clase madre entre paréntesis:
+
+```python
+class Adorno(Producto):
+    pass
+```
+
+Ahora crearemos una instancia de la clase `Adorno`, automáticamente heredará todos los atributos y métodos de la clase madre `Producto`, veamos algun ejemplo:
+
+```python
+a = Adorno('00000', 'Jarrón', 15.50, 'Jarrón de porcelana con dibujos')
+
+print(a)
+```
+```bash
+python3 producto.py
+        REFERENCIA	00000
+        NOMBRE		Jarrón
+        PVP		15.5
+        DESCRIPCIÓN	Jarrón de porcelana con dibujos
+```
