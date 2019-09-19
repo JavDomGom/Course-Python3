@@ -70,17 +70,175 @@ class Adorno(Producto):
     pass
 ```
 
-Ahora crearemos una instancia de la clase `Adorno`, automáticamente heredará todos los atributos y métodos de la clase madre `Producto`, veamos algun ejemplo:
+Ahora crearemos un objeto o instancia de la clase `Adorno`, automáticamente heredará todos los atributos y métodos de la clase madre `Producto`, veamos algun ejemplo:
 
 ```python
-a = Adorno('00000', 'Jarrón', 15.50, 'Jarrón de porcelana con dibujos')
+ad = Adorno('00000', 'Jarrón', 15.50, 'Jarrón de porcelana con dibujos')
 
-print(a)
+print(ad)
 ```
 ```bash
 python3 producto.py
-        REFERENCIA	00000
-        NOMBRE		Jarrón
-        PVP		15.5
-        DESCRIPCIÓN	Jarrón de porcelana con dibujos
+        REFERENCIA	    00000
+        NOMBRE		    Jarrón
+        PVP		        15.5
+        DESCRIPCIÓN     Jarrón de porcelana con dibujos
+```
+
+Vamos a crear la clase `Alimento`, esta clase a diferencia de la anterior si tiene un par de atributos propios, estos los definiremos sin constructor. Al estar fuera de un método de clase no es necesario indicar el prefijo `self`. Los definiremos con valores vacíos de la siguiente manera:
+
+```python
+class Alimento(Producto):
+    productor = ''
+    distribuidor = ''
+```
+
+Creamos una instancia de la clase `Alimento` pasándole solo los argumentos obligatorios:
+
+```python
+al = Alimento('00001', 'Aceite de Oliva', 5, 'Botella de aceite de oliva virgen extra')
+```
+
+Añadimos valor a sus dos atributos e imprimimos el objeto:
+
+```python
+al.productor = 'La aceitera'
+al.distribuidor = 'Distribuciones S.A.'
+
+print(al)
+```
+```bash
+python3 producto.py
+        REFERENCIA	    00001
+        NOMBRE		    Aceite de Oliva
+        PVP		        5
+        DESCRIPCIÓN     Botella de aceite de oliva virgen extra
+```
+
+Si nos fijamos bien se imprmien solo los datos que se indican en la función especial `__str__()` de la clase madre `Producto`, y este método especial no incluye los atributos propios de cada subclase. Para solucionar esto podremos redefinir el método especial `__str__()` en cada sublclase, por ejemplo en el caso de la subclase `Alimento` lo haríamos de la siguiente manera:
+
+```python
+    def __str__(self):
+        return """\
+        REFERENCIA\t{}
+        NOMBRE\t\t{}
+        PVP\t\t{}
+        DESCRIPCIÓN\t{}
+        PRODUCTOR\t{}
+        DISTRIBUIDOR\t{}""".format(self.referencia, self.nombre, self.pvp, self.descripcion, self.productor, self.distribuidor)
+```
+
+Si ejecutamos el programa de nuevo veremos que el método especial `__str__()` de la subclase ha sobreescrito el de la superclase:
+
+```bash
+python3 producto.py
+        REFERENCIA	    00001
+        NOMBRE		    Aceite de Oliva
+        PVP		        5
+        DESCRIPCIÓN	    Botella de aceite de oliva virgen extra
+        PRODUCTOR	    La aceitera
+        DISTRIBUIDOR	Distribuciones S.A.
+```
+
+Por último vamos a crear la subclase `Libro` que herede de la superclase `Producto`. La vamos a crear basándonos en la clase anterior, con sus propios atributos y su propio método especial `__str__()`:
+
+```python
+class Libro(Producto):
+    isbn = ''
+    autor = ''
+
+    def __str__(self):
+        return """\
+        REFERENCIA\t{}
+        NOMBRE\t\t{}
+        PVP\t\t{}
+        DESCRIPCIÓN\t{}
+        PRODUCTOR\t{}
+        DISTRIBUIDOR\t{}""".format(self.referencia, self.nombre, self.pvp, self.descripcion, self.isbn, self.autor)
+```
+
+Creamos un nuevo objeto o instancia de la subclase `Libro`, añadimos valor a sus dos atributos propios e imprimimos el objeto:
+
+```python
+li = Libro('00002', 'El enemigo conoce el sistema', 17.90, 'Libro sobre redes de hiper vigilancia')
+li.isbn = '8417636390'
+li.autor = 'Marta Peirano'
+```
+```bash
+python3 producto.py
+        REFERENCIA	    00002
+        NOMBRE		    El enemigo conoce el sistema
+        PVP		        17.9
+        DESCRIPCIÓN	    Libro sobre redes de hiper vigilancia
+        PRODUCTOR	    8417636390
+        DISTRIBUIDOR	Marta Peirano
+```
+
+## Clases heredadas y poliformismo
+
+En el punto anterior hemos creado una superclase y tres subclases, de modo que ahora disponemos de una jerarquía que nos permite poder trabajar con cierta comodidad en nuestra tienda de productos. Sin embargo, para poder manejar los productos necesitaremos agruparlos de alguna manera, por ejemplo en luna colección como una lista de productos. Podríamos añadir todos los productos a una lista sin importar que sean de subclases distintas, por ejemplo podríamos crear la lista `productos` y añadir dentro los productos de tipo `Alimento` y `Libro` creados anteriormente `al` y `li`:
+
+```python
+productos = [al, li]
+```
+
+A esta lista podremos añadirle otros objetos que vayamos creando o que ya hemos creado, por ejemplo el objeto de tipo `Adorno` que creamos al principio:
+
+```python
+productos.append(ad)
+```
+
+Si imprmimimos la lista obtendremos la siguiente salida por pantalla:
+
+```bash
+python3 producto.py
+[<__main__.Alimento object at 0x10b341eb8>,
+ <__main__.Libro object at 0x10b341ef0>,
+ <__main__.Adorno object at 0x10b341e80>]
+```
+
+Ahora podremos recorrer esta lista cómodamente con un bucle `for`, por ejemplo:
+
+```python
+for p in productos:
+    print(p, '\n')
+```
+
+Se ha añadido un salto de línea (`\n`) para tener un espacio entre productos y que se pueda visualizar un poco mejor:
+
+```bash
+python3 producto.py
+        REFERENCIA	    00001
+        NOMBRE		    Aceite de Oliva
+        PVP		        5
+        DESCRIPCIÓN	    Botella de aceite de oliva virgen extra
+        PRODUCTOR	    La aceitera
+        DISTRIBUIDOR	Distribuciones S.A.
+
+        REFERENCIA	    00002
+        NOMBRE		    El enemigo conoce el sistema
+        PVP		        17.9
+        DESCRIPCIÓN	    Libro sobre redes de hiper vigilancia
+        PRODUCTOR	    8417636390
+        DISTRIBUIDOR	Marta Peirano
+
+        REFERENCIA	    00000
+        NOMBRE		    Jarrón
+        PVP		        15.5
+        DESCRIPCIÓN	    Jarrón de porcelana con dibujos
+```
+
+Podemos modificar la manera de imprimir los datos en el bucle `for` de la siguiente manera para que solo imprima algunos atributos comunes de los productos:
+
+```python
+for p in productos:
+    print(p.referencia, p.nombre, '\n')
+```
+```bash
+python3 producto.py
+00001 Aceite de Oliva
+
+00002 El enemigo conoce el sistema
+
+00000 Jarrón
 ```
