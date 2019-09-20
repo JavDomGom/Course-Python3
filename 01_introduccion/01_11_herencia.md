@@ -232,13 +232,103 @@ Podemos modificar la manera de imprimir los datos en el bucle `for` de la siguie
 
 ```python
 for p in productos:
-    print(p.referencia, p.nombre, '\n')
+    print(p.referencia, p.nombre)
 ```
 ```bash
 python3 producto.py
 00001 Aceite de Oliva
-
 00002 El enemigo conoce el sistema
-
 00000 Jarrón
+```
+
+Lo malo de hacerlo de esta manera es que solo podríamos acceder a los atributos comunes de todos los productos, pero por porner un ejemplo no podríamos acceder al atributo `actor` de algunos de ellos.
+
+Para gestionar objetos de distintas clases con diferentes atributos lo mejor será utilizar algunos condicionales en cada iteración y una la función integrada `isinstance()` para comprobar si un objeto es una instancia de una clase determinada. Veamos el siguiente ejemplo:
+
+```python
+for p in productos:
+    if isinstance(p, Adorno):
+        print(p.referencia, p.nombre)
+    elif isinstance(p, Alimento):
+        print(p.referencia, p.nombre, p.productor)
+    elif isinstance(p, Libro):
+        print(p.referencia, p.nombre, p.isbn)
+```
+```bash
+python3 producto.py
+00001 Aceite de Oliva La aceitera
+00002 El enemigo conoce el sistema 8417636390
+00000 Jarrón
+```
+
+Ahora se recorren todos los productos y dependiendo del tipo de producto que sea muestra unos atributos u otros sin error.
+
+Una cosa interesante que podemos hacer es crear una función que reciba un producto y modifique alguno de sus atributos. Por ejemplo, una función que rebaje un tanto porciento el precio de los productos. Veamos un ejemplo con el producto `al` de tipo `Alimento` que creamos anteriormente. Primero crearemos una nueva función llamada `rebajar_producto()` con el siguiente código:
+
+```python
+def rebajar_producto(p, rebaja):
+    """Devuelve un producto con una rebaja en porcentaje de su precio."""
+    p.pvp -= (p.pvp / 100 * rebaja)
+    return p
+```
+
+Ahora vamos a crear una variable llamada `al_rebajado` a la que vamos a asignar como valor el resultado de aplicar un 10% de rebaja en el precio del producto `al`, para ello invocaremos a la función `rebajar_producto()` pasándole como argumentos el producto y el porcentaje que queremos aplicarle de rebaja a su precio. Finalmente imprmimos el producto para ver si se ha aplicado el descuento correctamente:
+
+```python
+al_rebajado = rebajar_producto(al, 10)
+
+print(al_rebajado)
+```
+```bash
+python3 producto.py
+        REFERENCIA	    00001
+        NOMBRE		    Aceite de Oliva
+        PVP		        4.5
+        DESCRIPCIÓN	    Botella de aceite de oliva virgen extra
+        PRODUCTOR	    La aceitera
+        DISTRIBUIDOR	Distribuciones S.A.
+```
+
+Aunque pueda parecerlo, en realidad no se ha realizado una copia del objeto `al` bajo el nombre `al_rebajado` y se le ha aplicado el descuento a este último. Si a continuación hacemos un print de ambos veremos que se ha modificado el precio en los dos:
+
+```python
+print(al_rebajado)
+print(al)
+```
+```bash
+python3 producto.py
+        REFERENCIA	    00001
+        NOMBRE		    Aceite de Oliva
+        PVP		        4.5
+        DESCRIPCIÓN	    Botella de aceite de oliva virgen extra
+        PRODUCTOR	    La aceitera
+        DISTRIBUIDOR	Distribuciones S.A.
+        REFERENCIA	    00001
+        NOMBRE		    Aceite de Oliva
+        PVP		        4.5
+        DESCRIPCIÓN	    Botella de aceite de oliva virgen extra
+        PRODUCTOR	    La aceitera
+        DISTRIBUIDOR	Distribuciones S.A.
+```
+
+Esto sucede porque los objetos, al igual que las colecciones, se peuden pasar como argumentos a las funciones pero se pasan por referencia, es decir, el original, no se realiza una copia de su valor. Recordemos el pase por referencia en las listas:
+
+```python
+lista_1 = [1, 2, 3]
+lista_2 = lista_1
+
+lista_2.append(4)
+print(lista_1)
+```
+```bash
+python3 ejemplo.py
+[1, 2, 3, 4]
+```
+
+En una lista para copiar el valor debíamos usar los corchetes con dos puntos dentro (`[:]`), se ese modo el append se realizaría sobre la copia, y no sobre una referencia al original.
+
+Con los objetos pasa lo mismo, solo que para hacer una copia de un objeto tendremos que usar un método perteneciente a un módulo externo llamado `copy()` que primero deberemos importar para poder utilizarlo. Al principio del código debemos escribir la siguiente línea:
+
+```python
+import copy
 ```
