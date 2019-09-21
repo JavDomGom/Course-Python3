@@ -174,7 +174,7 @@ python3 producto.py
         DISTRIBUIDOR	Marta Peirano
 ```
 
-## Clases heredadas y poliformismo
+## Clases heredadas
 
 En el punto anterior hemos creado una superclase y tres subclases, de modo que ahora disponemos de una jerarquía que nos permite poder trabajar con cierta comodidad en nuestra tienda de productos. Sin embargo, para poder manejar los productos necesitaremos agruparlos de alguna manera, por ejemplo en luna colección como una lista de productos. Podríamos añadir todos los productos a una lista sin importar que sean de subclases distintas, por ejemplo podríamos crear la lista `productos` y añadir dentro los productos de tipo `Alimento` y `Libro` creados anteriormente `al` y `li`:
 
@@ -332,3 +332,88 @@ Con los objetos pasa lo mismo, solo que para hacer una copia de un objeto tendre
 ```python
 import copy
 ```
+
+Este módulo tiene varios métodos, uno de ellos es el método `copy()`, y lo usaremos para hacer una copia de un objeto, de modo que cuando lo modifiquemos el objeto original no se vea afectado por el cambio. Veamos un ejemplo con el objeto `ad` de tipo `Adorno`:
+
+```python
+copia_adorno = copy.copy(ad)
+```
+
+Ahora a `copia_adorno` vamos a cambiar el valor del atributo `pvp` poniendo un nuevo precio del producto:
+
+```python
+copia_adorno.pvp = 16.25
+```
+
+Por último imprimiremos el objeto original `ad` y su copia `copia_adorno`:
+
+```python
+print(ad)
+print(copia_adorno)
+```
+```bash
+python3 producto.py
+        REFERENCIA	00000
+        NOMBRE		Jarrón
+        PVP		15.5
+        DESCRIPCIÓN	Jarrón de porcelana con dibujos
+        REFERENCIA	00000
+        NOMBRE		Jarrón
+        PVP		16.25
+        DESCRIPCIÓN	Jarrón de porcelana con dibujos
+```
+
+Como se puede comprobar se ha realizado la copia correctamente y se ha modificado el valor del atributo `pvp` solo a la copia, el original sigue teniendo su valor inicial.
+
+## Herencia múltimple
+
+En Python la herencia múltiple hace referencia a la posibilidad de que una subclase pueda heredar de varias superclases a la vez, de modo que se puedan heredar multitud de atributos y métodos de estas superclases. Sin embargo hay un problema, y este aparece cuando tenemos comportamientos comunes en las superclases, es decir, cuando varias superclases tienen métodos y atributos iguales. En estos casos Python dará prioridad a las clases situadas más a la izquierda en la posición de declaración. Para poder verlo mejor crearemos un nuevo archivo llamado `herencia_multiple.py` con el siguiente código de ejemplo.
+
+Primero crearemos una clase `A` que solo tenga el método especial `__init__()` y este ejecutará un `print()` con un mensaje diciendo `'Soy de clase A'` al instanciarse:
+
+```python
+class A:
+    def __init__(self):
+        print('Soy de clase A')
+```
+
+A continuación haremos una clase `B` con el mismo código que la clase `A` a diferencia del mensaje, este dirá `'Soy de clase B'`:
+
+```python
+class B:
+    def __init__(self):
+        print('Soy de clase B')
+```
+
+Por último haremos una clase `C` que herede de la clase `A` y `B`, en este orden, y la clase no hará nada, solo un `pass` en su cuerpo:
+
+```python
+class C(A, B):
+    pass
+```
+
+Ahora instanciamos un objeto de la clase `C` y ejecutamos el programa para vér qué sucede:
+
+```python
+c = C()
+```
+```bash
+python3 herencia_multiple.py
+Soy de clase A
+```
+
+Ha heredado el mismo método especial `__init__()` de las clases `A` y `B`, pero solo ha mostrado el mensaje de la clase `A`. Probemos a cambiar el orden de la herencia múltiple del siguiente modo:
+
+```python
+class C(B, A):
+    pass
+```
+
+Si ejecutamos el programa de nuevo obtendremos la siguiente salida:
+
+```bash
+python3 herencia_multiple.py
+Soy de clase B
+```
+
+Como ya se ha explicado antes, si hay herencia múltiple y existe un método o atributo con el mismo nombre en las clases heredadas, siempre tendrá preferencia la primera declarada por la izquierda.

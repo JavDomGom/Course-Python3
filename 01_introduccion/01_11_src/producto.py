@@ -57,14 +57,14 @@ def rebajar_producto(p, rebaja):
 
 ad = Adorno('00000', 'Jarrón', 15.50, 'Jarrón de porcelana con dibujos')
 
-al = Alimento('00001', 'Aceite de Oliva', 5, 'Botella de aceite de oliva virgen extra')
-al.productor = 'La aceitera'
-al.distribuidor = 'Distribuciones S.A.'
+# al = Alimento('00001', 'Aceite de Oliva', 5, 'Botella de aceite de oliva virgen extra')
+# al.productor = 'La aceitera'
+# al.distribuidor = 'Distribuciones S.A.'
 
-al_rebajado = rebajar_producto(al, 10)
+# al_rebajado = rebajar_producto(al, 10)
 
-print(al_rebajado)
-print(al)
+# print(al_rebajado)
+# print(al)
 
 # li = Libro('00002', 'El enemigo conoce el sistema', 17.90, 'Libro sobre redes de hiper vigilancia')
 # li.isbn = '8417636390'
@@ -82,8 +82,9 @@ print(al)
 #     elif isinstance(p, Libro):
 #         print(p.referencia, p.nombre, p.isbn)
 
-lista_1 = [1, 2, 3]
-lista_2 = lista_1
 
-lista_2.append(4)
-print(lista_1)
+copia_adorno = copy.copy(ad)
+copia_adorno.pvp = 16.25
+
+print(copia_adorno)
+print(ad)
