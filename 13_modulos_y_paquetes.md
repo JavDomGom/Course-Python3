@@ -86,3 +86,36 @@ Hola, te estoy saludando desde el __init__() de la clase Saludo
 ```
 
 ## Paquetes
+
+Utilizar paquetes nos ofrece varias ventajas. En primer lugar nos permite unificar  distintos módulos bajo un mismo número de paquetes. Así podemos utilzar   jerarquías de módulos o submódulos y también subpaquetes. Por otra parte nos permiten distribuir y manejar fácilmente nuestro código como si fueran librerías instalables de Python. De este modo se pueden utilizar como módulos standard desde el inérprete sin cargarlos previamente.
+
+Para crear un paquete primero vamos a crear un nuevo directorio que tendrá por nombre el nombre del paquete, en este ejemplo lo llamaremos simplemente `paquete`. Dentro de este nuevo directorio vamos a crear un nuevo archivo llamado `__init__.py` sin ningún contenido, el archivo vacío. Por último vamos a copiar dentro del directorio `paquete` el archivo `saludos.py` que hicimos anteriormente.
+
+Ahora fuera de la carpeta `paquete` trabajremos sobre el archivo `test.py` que tenemos del punto anterior. En este archivo `test.py` vamos a importar el paquete y sus módulos y clases de la siguiente manera:
+
+```python
+from paquete.saludos import *
+```
+
+Si queremos utilizar la función `saludar()` de nuestro módulo `slaudos` podemos hacerlo del siguiente modo:
+
+```python
+saludar()
+```
+
+Al ejecutar el programa obtendremos la siguiente salida por pantalla:
+
+```bash
+python3 test.py
+Hola, te estoy saludando desde la función saludar del módulo saludos
+```
+
+Y si queremos acceder a la clase `Saludo` debemos hacerlo de la siguiente forma:
+
+```python
+Saludo()
+```
+```bash
+python3 test.py
+Hola, te estoy saludando desde el __init__() de la clase Saludo
+```
