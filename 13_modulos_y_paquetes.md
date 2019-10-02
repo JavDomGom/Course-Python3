@@ -73,7 +73,7 @@ python3 test.py
 Hola, te estoy saludando desde el __init__() de la clase Saludo
 ```
 
-Tambiñén podríamos importar solo la clase `Saludo` tal y como hemos visto antes:
+También podríamos importar solo la clase `Saludo` tal y como hemos visto antes:
 
 ```python
 from saludos import Saludo
@@ -83,6 +83,118 @@ Saludo()
 ```bash
 python3 test.py
 Hola, te estoy saludando desde el __init__() de la clase Saludo
+```
+
+A continuación veremos algunos de los módulos integrados en Python más utilizados.
+
+### Collections
+
+El módulo integrado `collections` de una serie de colecciones muy interesantes que podremos utilzar para multitud de acciones bastante recurrentes. Para poder hacer uso de sus colecciones podemos importar la colección en cuestión de la siguiente manera:
+
+```python
+from collections import Counter
+```
+
+Por ejemplo, la colección `Counter` nos devolverá un diccionario con el número de veces que se repite cada uno de los elementos de una lista. Vamos a crear un archivo llamado `test_collections.py` para ver algunos ejemplos:
+
+```python
+l = [1, 2, 4, 3, 3, 5, 1, 3, 1, 1, 6]
+
+print(Counter(l))
+```
+```bash
+python3 test_collections.py
+Counter({1: 4, 3: 3, 2: 1, 4: 1, 5: 1, 6: 1})
+```
+
+En este resultado se puede observar que el número `1` aparece cuatro veces, el número `3` tres veces, el número `2` una vez, etc.
+
+Otro ejemplo en el uso de la colección `Counter` es contar las veces que aparece un carácter en una cadena de caracteres o *string*:
+
+```python
+p = 'Hola mundo!'
+
+print(Counter(p))
+```
+```bash
+python3 test_collections.py
+Counter({'o': 2, 'H': 1, 'l': 1, 'a': 1, ' ': 1, 'm': 1, 'u': 1, 'n': 1, 'd': 1, '!': 1})
+```
+
+En este caso el programa nos dice que el carácter `'o'` aparece dos veces, el carácter `'H'` una vez, el caracter `'l'` una vez, etc.
+
+Podría darse el caso en el que tenemos una cadena de caracteres con una varias palabras sepradas por un espacio, por ejemplo:
+
+```python
+s = 'rojo verde azul rojo morado rojo blanco blanco'
+```
+
+En este caso queremos saber cuántas veces aparece cada palabra, pero hay que precisar que esto no es una lista de palabras, sino una cadena de carácteres. Para resolverlo primero podemos pasar esta cadena de caracteres compuesta de palabras separadas por espacio a una lista, y para ello podemos usar la función integrada `split()`, al que si no le pasamos ningún argumento tomará el carácter espacio por defecto:
+
+```python
+print(s.split())
+```
+```bash
+python3 test_collections.py
+['rojo', 'verde', 'azul', 'rojo', 'morado', 'rojo', 'blanco', 'blanco']
+```
+
+Ahora que ya tenemos cada palabra como un elemento de una lista ya podemos utilizar la colección `Counter` del mismo modo que antes:
+
+```python
+print(Counter(s.split()))
+```
+```bash
+python3 test_collections.py
+Counter({'rojo': 3, 'blanco': 2, 'verde': 1, 'azul': 1, 'morado': 1})
+```
+
+De este modo obtendremos cuántas veces aparece cada palabra. Podríamos aprovechar este contador de elementos para utilizar otra función integrada llamada `most_common()`, a la que le hemos de pasar como argumento el número de elementos que queremos que nos diga que són los más comunes, por ejemplo `1`:
+
+```python
+n = [10, 20, 30, 40, 10, 20, 30, 10, 20, 10]
+
+c = Counter(n)
+
+print(c.most_common(1))
+```
+```bash
+python3 test_collections.py
+[(10, 4)]
+```
+
+Nos dice que el elemento más común es el número `10`, que aparece cuatro veces. Si a la función integrada `most_common()` le pasamos como argumento el númeor `2` nos devolverá los dos elementos más comunes:
+
+```python
+print(c.most_common(2))
+```
+```bash
+python3 test_collections.py
+[(10, 4), (20, 3)]
+```
+
+Otra colección del módulo `collections`muy interesante es `OrderedDict`. Los diccionarios son colecciones de datos que muestran sus elementos o indices desordenados. Con esta colección podremos mostrar los indices ordenados por la posición en la que se van añadiendo. Por ejemplo:
+
+```python
+from collections import OrderedDict
+
+d = {'perro': 'dog', 'gato': 'cat', 'loro': 'parrot'}
+
+print(OrderedDict(d))
+```
+```bash
+python3 test_collections.py
+OrderedDict([('perro', 'dog'), ('gato', 'cat'), ('loro', 'parrot')])
+```
+
+De este modo no se alterará el orden de los indices, siempre será el que se definió en su creación y los que se vayan añadiendo si la ocasión lo requiera. Una manera de comprobar esta ordenación es la siguiente:
+
+```python
+d1 = {'perro': 'dog', 'gato': 'cat'}
+d2 = {'gato': 'cat', 'perro': 'dog'}
+
+print(d1 == d2)     # True
+print(OrderedDict(d1) == OrderedDict(d2))   # False
 ```
 
 ## Paquetes
