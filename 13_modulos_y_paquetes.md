@@ -197,6 +197,8 @@ print(d1 == d2)     # True
 print(OrderedDict(d1) == OrderedDict(d2))   # False
 ```
 
+### Datetime
+
 ## Paquetes
 
 Utilizar paquetes nos ofrece varias ventajas. En primer lugar nos permite unificar  distintos módulos bajo un mismo número de paquetes. Así podemos utilzar   jerarquías de módulos o submódulos y también subpaquetes. Por otra parte nos permiten distribuir y manejar fácilmente nuestro código como si fueran librerías instalables de Python. De este modo se pueden utilizar como módulos standard desde el inérprete sin cargarlos previamente.
