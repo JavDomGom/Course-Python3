@@ -193,11 +193,87 @@ De este modo no se alterará el orden de los indices, siempre será el que se de
 d1 = {'perro': 'dog', 'gato': 'cat'}
 d2 = {'gato': 'cat', 'perro': 'dog'}
 
-print(d1 == d2)     # True
-print(OrderedDict(d1) == OrderedDict(d2))   # False
+print(d1 == d2)
+print(OrderedDict(d1) == OrderedDict(d2))
 ```
 
 ### Datetime
+
+Uno de los módulos más interesantes sin duda es `datetime`, que nos servirá para manejar y trabajar con información relacionada con las fechas. Para trabajar sobre este punto vamos a crear un nuevo archivo llamado `test_datetime.py` y vamos a comenzar importando este módulo de la siguiente manera:
+
+```python
+import datetime
+```
+
+Ahora vamos a crear un objeto de tipo `datetime` en el que haremos uso del subpaquete `datetime` y su método `now()`.
+
+```python
+dt = datetime.datetime.now()
+
+print(dt)
+```
+```bash
+python3 test_datetime.py
+2019-10-04 14:10:50.879112
+```
+
+De esta manera la variable `dt` nos devuelve la fecha y hora actual. También podemos acceder a cada uno de los atributos del objeto `dt`, como solo el año, el mes, día, hora, minuto, segundo o microsegundos, de la siguiente manera:
+
+```python
+print(dt.year)
+print(dt.month)
+print(dt.day)
+print(dt.hour)
+print(dt.minute)
+print(dt.second)
+print(dt.microsecond)
+```
+```bash
+python3  test_datetime.py
+2019
+10
+4
+14
+25
+45
+315492
+```
+
+
+
+```python
+
+```
+```bash
+python3 
+```
+
+
+
+```python
+
+```
+```bash
+python3 
+```
+
+
+
+```python
+
+```
+```bash
+python3 
+```
+
+
+
+```python
+
+```
+```bash
+python3 
+```
 
 ## Paquetes
 
