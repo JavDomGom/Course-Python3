@@ -239,13 +239,16 @@ python3  test_datetime.py
 315492
 ```
 
-
+Ahora que ya sabemos cómo podemos acceder a cada uno de los elementos de los que se comone una fecha y hora podremos darle el formato que se prefiera, por ejemplo:
 
 ```python
-
+print('{}/{}/{}'.format(dt.year, dt.month, dt.day))
+print('{}:{}:{} {}'.format(dt.hour, dt.minute, dt.second, dt.microsecond))
 ```
 ```bash
-python3 
+python3 test_datetime.py
+2019/10/5
+8:14:11 307892
 ```
 
 
