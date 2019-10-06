@@ -251,13 +251,16 @@ python3 test_datetime.py
 8:14:11 307892
 ```
 
-
+También podemos crear una fecha manualmente tal y como se muestra en el siguiente ejemplo:
 
 ```python
+dt = datetime.datetime(2000, 1, 1, 0, 0)
 
+print(dt)
 ```
 ```bash
-python3 
+python3 test_datetime.py
+2000-01-01 00:00:00
 ```
 
 

@@ -1,14 +1,5 @@
 import datetime
 
-dt = datetime.datetime.now()
+dt = datetime.datetime(2000, 1, 1, 0, 0)
 
-# print(dt.year)
-# print(dt.month)
-# print(dt.day)
-# print(dt.hour)
-# print(dt.minute)
-# print(dt.second)
-# print(dt.microsecond)
-
-print('{}/{}/{}'.format(dt.year, dt.month, dt.day))
-print('{}:{}:{} {}'.format(dt.hour, dt.minute, dt.second, dt.microsecond))
+print(dt)
