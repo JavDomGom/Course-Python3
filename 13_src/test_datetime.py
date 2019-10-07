@@ -1,5 +1,8 @@
 import datetime
+import locale
 
-dt = datetime.datetime(2000, 1, 1, 0, 0)
+locale.setlocale(locale.LC_ALL, 'zh_CN')
 
-print(dt)
+dt = datetime.datetime.now()
+
+print(dt.strftime('%A %d %B %Y %H:%M'))

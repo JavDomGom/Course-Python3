@@ -263,23 +263,81 @@ python3 test_datetime.py
 2000-01-01 00:00:00
 ```
 
-
-
-```python
-
-```
-```bash
-python3 
-```
-
-
+En este tipo de dato `datetime` no se pueden sobreescribir los datos mediante la asignación de un nuevo valor de forma standard, ya que los datos se almacenan en una tupla, y las tuplas son inmutables. Por ejmplo, si queremos cambiar el año asignando un nuevo valor al atributo `year` de la siguiente forma nos daría el siguiente error:
 
 ```python
-
+dt.year = 3000
 ```
 ```bash
-python3 
+python3 test_datetime.py
+Traceback (most recent call last):
+  File "test_datetime.py", line 5, in <module>
+    dt.year = 3000
+AttributeError: attribute 'year' of 'datetime.date' objects is not writable
 ```
+
+Pero el módulo `datetime` dispone de un método propio llamado `replace()` para realizar este cambio, se haría de la siguiente manera:
+
+```python
+dt = dt.replace(year=3000)
+
+print(dt)
+```
+```bash
+python3 test_datetime.py
+3000-01-01 00:00:00
+```
+
+En el módulo `datetime` existe un método llamado `isoformat()` que convierte el dato de tipo fecha a un *standard* ISO, por ejemplo:
+
+```python
+dt = datetime.datetime.now()
+
+print(dt.isoformat())
+```
+```bash
+python3 test_datetime.py
+2019-10-07T19:46:08.409881
+```
+
+Otro método para darle formato personalizado a la fecha y hora es el método `strftime()`, por ejemplo:
+
+```python
+print(dt.strftime('%A %d %B %Y %I:%M'))
+```
+```bash
+python3 test_datetime.py
+Monday 07 October 2019 07:52
+```
+
+`%A` es el día de la semana escrito en inglés, `%d` es el número de día del mes, `%B` es el nombre del mes en inglés, `%Y` es el año con 4 cifras, `%I` es la hora (en formato 12h, para formato 24h es `%H`) y `%M` son los minutos.
+
+Si queremos que las fechas se muestren en español primero habría que importar al inicio del código una librería llamada `locale` y configurar el lenguaje en el que trabajará Python de la siguiente manera:
+
+```python
+import locale
+
+locale.setlocale(locale.LC_ALL, 'es_ES')
+```
+
+Si ahora volvemos a ejectar el mismo programa aparecerá con el idioma cambiado:
+
+```bash
+python3 test_datetime.py
+lunes 07 octubre 2019 19:58
+```
+Se pueden usar diferentes códigos de idioma, por ejemplo en Chino:
+
+```python
+locale.setlocale(locale.LC_ALL, 'zh_CN')
+```
+```bash
+python3 test_datetime.py
+星期一 07 十月 2019 20:01
+```
+
+### Math
+
 
 ## Paquetes
 
