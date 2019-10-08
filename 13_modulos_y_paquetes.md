@@ -338,6 +338,232 @@ python3 test_datetime.py
 
 ### Math
 
+El módulo `math` integra una serie de funciones y métodos que nos servirán para realizar algunas operaciones matemáticas de forma más sencilla. Al igual que otros modulos será necesario importarlo al inicio de nuestro código, así que vamos a hacerlo en un nuevo archivo llamado `test_math.py`:
+
+```python
+import math
+```
+
+Una vez importado el módulo `math` ya tendremos disponibles todos sus métodos. Veamos un ejemplo en el que trataremos de redondear un número decimal. Si utilizamos el método `round()` que viene integrado en Python se redondearán a la baja todos aquellos números decimales que sus decimales sean menores de `5`, por ejemplo:
+
+```python
+print(round(1.4))
+```
+```bash
+python3 test_math.py
+1
+```
+
+Pero se redondearán todos aquellos números decimales que sus decimales sean igual o mayor que 5, véase el ejemplo:
+
+```python
+print(round(1.5))
+```
+```bash
+python3 test_math.py
+2
+```
+
+Gracias al método `floor()` del módulo `math` podremos forzar que el redondeo sea siemrpe a la baja, por ejemplo:
+
+```python
+print(math.floor(1.3))
+print(math.floor(1.5))
+print(math.floor(1.9))
+```
+```bash
+python3 test_math.py
+1
+1
+1
+```
+
+Sin embargo, si lo que se quiere es forzar un redondeo al alza debemos utilizar el método `ceil()` del módulo `math`, por ejemplo:
+
+```python
+print(math.ceil(1.00001))
+print(math.ceil(1.3))
+print(math.ceil(1.8))
+```
+```bash
+python3 test_math.py
+2
+2
+2
+```
+
+Otra funcionalidad interesante del módulo `math` es el método `fsum()`, que es un sumatorio de una lista de números y que devuelve el resultado en formato *float*, por ejemplo:
+
+```python
+numeros = [1, 2, 3, 4, 5]
+
+print(math.fsum(numeros))
+```
+```bash
+python3 test_math.py
+15.0
+```
+
+Si bien es cierto que existe un método integrado de Python llamado `sum()` que ya hace un sumatorio de una lista de números, esta no es igual de eficaz, ya que si se suman números enteros y flotantes tiene un comportamiento extraño, por ejemplo:
+
+```python
+numeros = [0.9999999, 1, 2, 3]
+
+print(sum(numeros))
+print(math.fsum(numeros))
+```
+```bash
+python3 test_math.py
+6.999999900000001
+6.9999999
+```
+
+Como se puede ver el comportamiento en el caso de usar el método `sum()` no siempre es estable, en cambio el método `fsum()` que integra el módulo `math`lo resuelve correctamente.
+
+También es interesante es el método `trunc()`, que trunca un número decimal y devuelve la parte entera, por ejemplo:
+
+```python
+print(math.trunc(3.14159265359))
+```
+```bash
+python3 test_math.py
+3
+```
+
+Ya sabíamos hacer potencias en Python con el doble asterisco (**) como operador, pero el módulo `math` integra un método llamado `pow()` al que se le han de pasar dos argumentos, el primero es la base y el segundo el expoenente, por ejemplo:
+
+```python
+print(math.pow(2, 3))
+print(math.pow(5, 4))
+```
+```bash
+python3 test_math.py
+8.0
+625.0
+```
+
+También tenemos el método `sqrt()` que nos permitirá realizar raíces cuadradas, por ejemplo:
+
+```python
+print(math.sqrt(9))
+```
+```bash
+python3 test_math.py
+3.0
+```
+
+Además de métodos también tiene algunos atributos como las constantes del múnero `pi` o el número `e`:
+
+```python
+print(math.pi)
+print(math.e)
+```
+```bash
+python3 test_math.py
+3.141592653589793
+2.718281828459045
+```
+
+En realidad el módulo `math`tiene una gran cantidad de funcionalidades y atributos, pero en este documento solo se explican las más utilizadas.
+
+### Random
+
+El módulo `random` es un módulo que contiene varias herramientas o funcionalidades para trabajar y generar números aleatorios. Se utiliza mucho en el desarrollo de videoujuegos o en desarrollos en los que se necesita cierto grado de seguridad. Veamos algunos ejemplos en un nuevo archivo llamado `test_random.py`. Lo primero que hay que hacer es importar el módulo `random` de la siguiente manera:
+
+```python
+import random
+```
+
+Ahora que ya tenemos el módulo importado podremos empezar a generar un número aleatorio de forma sencilla con el siguiente ejemplo:
+
+```python
+print(random.random())
+print(random.random())
+print(random.random())
+```
+```bash
+python3 test_random.py
+0.06823749155608883
+0.9070119606268106
+0.4445508707984924
+```
+
+De esta forma podremos generar números flotantes aleatorios menores o iguales que uno y mayores de cero. Si quisieramos números random entre un rango de dos números podríamos usar el método `uniform()` y solo tendríamos que pasar estos dos números como argumentos, por ejemplo números random entre uno y diez:
+
+```python
+print(random.uniform(1, 10))
+print(random.uniform(1, 10))
+print(random.uniform(1, 10))
+```
+```bash
+python3 test_random.py
+2.382198826548743
+4.8697236381240865
+3.8781201434396864
+```
+
+Otra manera de generar números enteros random entre cero y un número es utilizando el método `randrange()`, por ejemplo, entre cero y diez:
+
+```python
+print(random.randrange(10))
+print(random.randrange(10))
+print(random.randrange(10))
+```
+```bash
+python3 test_random.py
+8
+1
+4
+```
+
+También podemos pasarle dos números como argumentos para que devuelva un número aleatorio entre esos números, por ejemplo:
+
+```python
+print(random.randrange(0, 100))
+print(random.randrange(0, 100))
+print(random.randrange(0, 100))
+```
+```bash
+python3 test_random.py
+95
+52
+91
+```
+
+Y si añadimos un número `2` como tercer argumento solo nos sacará números random pares entre cero y diez:
+
+```python
+print(random.randrange(0, 100, 2))
+print(random.randrange(0, 100, 2))
+print(random.randrange(0, 100, 2))
+```
+```bash
+python3 test_random.py
+94
+46
+32
+```
+
+
+
+```python
+
+```
+```bash
+python3 test_random.py
+
+```
+
+
+
+```python
+
+```
+```bash
+python3 test_random.py
+
+```
+
 
 ## Paquetes
 
