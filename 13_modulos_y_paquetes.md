@@ -544,14 +544,36 @@ python3 test_random.py
 32
 ```
 
-
+Además de poder usar el módulo `random` con números también podremos usarlo con algunas colecciones, por ejemplo, con una cadena de texto en la que podremos escoger una letra de forma aleatoria. Esto se consigue con el método `choice()`, por ejemplo:
 
 ```python
+cadena = 'Hola mundo!'
 
+print(random.choice(cadena))
+print(random.choice(cadena))
+print(random.choice(cadena))
 ```
 ```bash
 python3 test_random.py
+n
+u
+o
+```
 
+El método `choice()` tambiñén nos vale para listas, por ejemplo:
+
+```python
+lista = [1, 2, 3, 4, 5]
+
+print(random.choice(lista))
+print(random.choice(lista))
+print(random.choice(lista))
+```
+```bash
+python3 test_random.py
+4
+5
+3
 ```
 
 
