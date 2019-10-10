@@ -544,7 +544,7 @@ python3 test_random.py
 32
 ```
 
-Además de poder usar el módulo `random` con números también podremos usarlo con algunas colecciones, por ejemplo, con una cadena de texto en la que podremos escoger una letra de forma aleatoria. Esto se consigue con el método `choice()`, por ejemplo:
+Además de poder usar el módulo `random` con números también podremos usarlo con algunas colecciones como las cadenas de texto, en la que podremos escoger una letra de forma aleatoria. Esto se consigue con el método `choice()`, por ejemplo:
 
 ```python
 cadena = 'Hola mundo!'
@@ -560,7 +560,7 @@ u
 o
 ```
 
-El método `choice()` tambiñén nos vale para listas, por ejemplo:
+El método `choice()` también nos vale para listas, en este caso se obtendría de forma aleatoria cualquiera de los elementos de la lista, por ejemplo:
 
 ```python
 lista = [1, 2, 3, 4, 5]
@@ -576,16 +576,40 @@ python3 test_random.py
 3
 ```
 
-
+Además del método `choice()` también podremos usar un método llamado `shuffle()` para desordenar los elementos de una lista y que permanezcan guardados de ese modo en la lista de origen, mezcla los elementros de forma aleatoria, por ejemplo:
 
 ```python
+lista = [1, 2, 3, 4, 5]
 
+print(lista)
+
+random.shuffle(lista)
+
+print(lista)
 ```
 ```bash
 python3 test_random.py
-
+[1, 2, 3, 4, 5]
+[3, 4, 1, 2, 5]
 ```
 
+Por último también podremos usar un método llamado `sample()` al que le podremos pasar una lista como argumento, y también un número de elementos que queremos que nos devuelva de forma aleatoria, por ejemplo, si quisieramos que nos devolviese tres elementos de la lista de forma aleatoria podríamos hacerlo de la siguiente manera:
+
+```python
+lista = [1, 2, 3, 4, 5]
+
+print(random.sample(lista, 3))
+print(random.sample(lista, 3))
+print(random.sample(lista, 3))
+```
+```bash
+python3 test_random.py
+[4, 5, 1]
+[4, 2, 5]
+[3, 4, 2]
+```
+
+Existen infinidad de ejemplos y un montón de métodos disponibles más en el módulo `random`, estos solo son los más utilizados o los más conocidos.
 
 ## Paquetes
 
