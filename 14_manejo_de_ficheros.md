@@ -20,7 +20,7 @@ from io import open
 
 
 ```python
-texto = 'Esta es una línea de texto.\nY esta es otra línea.'
+texto = 'Esta es una línea de texto.\nY esta es otra línea de texto.'
 ```
 ```bash
 python3 test_ficheros.py
