@@ -103,22 +103,125 @@ Esta en una línea nueva.
 
 ```
 
+## Manejo del puntero
 
+Cuando abrimos un fichero, el puntero es la posición en la que estaremos posicionados para comenzar a leer, escribir o modificar. Dependiendo de la modalidad que estemos empleando, el puntero estará por defecto al inicio del fichero (archivo nuevo) o al final (añadir líneas nuevas). Pero existe un método llamado `seek()` que nos permitirá mover el puntero a una posición que nosotros queramos, por ejemplo, al décimo caracter de la primera línea:
 
 ```python
+fichero = open('fichero.txt', 'r')
+fichero.seek(10)
 
+texto = fichero.read()
+
+fichero.close()
+
+print(texto)
 ```
 ```bash
 python3 test_ficheros.py
-
+a línea de texto.
+Y esta es otra línea de texto.
+Esta en una línea nueva.
 ```
 
-
+El propio método `read()` que usamos para leer el contenido del fichero desde la posición del fichero también tiene la posibilidad de recibir un argumento para indicarle el número de carácteres que queremos leer o desplazar el puntero, por ejemplo:
 
 ```python
+fichero = open('fichero.txt', 'r')
 
+texto = fichero.read(6)
+
+fichero.close()
+
+print(texto)
 ```
 ```bash
 python3 test_ficheros.py
-
+Esta e
 ```
+
+Existe una modalidad que nos permite leer el archivo y además escribir en él, pero ubicando el puntero en la primera posición, esta modalidad se define mediante `'r+'` de la siguiente manera:
+
+```python
+fichero = open('fichero.txt', 'r+')
+fichero.write('Incluyo esta linea al principio del fichero.\n')
+
+texto = fichero.read()
+
+fichero.close()
+
+print(texto)
+```
+
+Esta modalidad lo que hace realmente es sobreescribir los primeros carácteres que se encuentre desde la primera posición del puntero con los carácteres de la nuevalínea de texto que estamos añadiendo. Si abrimos el archivo después de ejecutar nuestro programa Python veremos el cambio.
+
+Si quisiéramos modificar el contenido de una línea en especial, por ejemplo de la tercera línea, podríamos hacerlo de la siguiente manera:
+
+```python
+fichero = open('fichero.txt', 'r+')
+
+lineas = fichero.readlines()
+lineas[2] = 'Linea modificada.'
+
+fichero.seek(0)
+fichero.writelines(lineas)
+fichero.seek(0)
+
+texto = fichero.read()
+
+fichero.close()
+
+print(texto)
+```
+
+Si abrimos el archivo de texto para ver los cambios veremos que se ha posicionado en la tercera línea y la ha modificado sobreescribiemdo los caracteres existentes por los nuevos.
+
+```bash
+Esta es una línea de texto.
+Y esta es otra línea de texto.
+Linea modificada.a nueva.
+```
+
+## Ficheros y objetos con Pickle
+
+Pickle es un módulo de Python que nos permite trabajar con ficheros binarios en los que podremos guardar objetos y estructuras de datos complejas como colecciones, y luego poder recuperarlos para trabajar con ellos. Lo primero que hay que hacer para comenzar a utilizarlo es importar el módulo `pickle` en un nuevo archivo llamado `test_pickle.py`:
+
+```python
+import pickle
+```
+
+A continuación crearemos una lista con unos números y al igual que antes creamos una variable llamada `fichero` que tendrá por valor el objeto de un fichero abierto al que llamaremos `lista.bin` y lo haremos en modalidad de escritura binaria `'wb'`, por ejemplo:
+
+```python
+lista = [1, 2, 3, 4, 5]
+
+fichero = open('lista.bin', 'wb')
+```
+
+Ahora hacemos un volcado de la lista al fichero binario mediante una llamada al método `dump()` del módulo `pickle` y finalmente cerramos el archivo de la siguiente manera:
+
+```python
+pickle.dump(lista, fichero)
+
+fichero.close()
+```
+
+Si ejecutamos el programa veremos que se ha creado un nuevo archivo `lista.bin`. Si tratamos de abrirlo con un editor de texto veremos carácteres extraños. Esto es porque es un archivo binario, no de texto plano, pero el contenido del fichero es correcto, contiene nuestra lista.
+
+Ahora veremos cómo podemos hacer para leer el fichero una vez lo hemos generado y cómo poder recuperar nuestra lista. Primero abrimos el fichero en modo lectura binaria (`'rb'`) y luego creamos una variable llamada `lista` que tenga por valor una llamada al método `load()` del módulo `pickle` al que le pasamos el fichero como argumento. Cerramos el fichero e imprimimos el contenido de lista:
+
+```python
+fichero = open('lista.bin', 'rb')
+
+lista = pickle.load(fichero)
+
+fichero.close()
+
+print(lista)
+```
+```bash
+python3 test_ficheros.py
+[1, 2, 3, 4, 5]
+```
+
+Como se puede comprobar hemos recuperado la lista que teníamos guardada en un archivo binario. De este modo podríamos almacenar cualquier tipo de objeto, sea una lista o un diccionario o un objeto de una clase, y tendríamos persistencia de datos.

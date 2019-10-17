@@ -1,5 +1,16 @@
 from io import open
 
-with open('fichero.txt', 'r') as fichero:
-    for linea in fichero:
-        print(linea)
+fichero = open('fichero.txt', 'r+')
+
+lineas = fichero.readlines()
+lineas[2] = 'Linea modificada.'
+
+fichero.seek(0)
+fichero.writelines(lineas)
+fichero.seek(0)
+
+texto = fichero.read()
+
+fichero.close()
+
+print(texto)
