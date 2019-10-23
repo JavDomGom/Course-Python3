@@ -12,6 +12,8 @@ frame.config(cursor='pirate')
 frame.config(bg='lightblue')
 frame.config(bd=25)
 frame.config(relief='sunken')
+frame.pack(side=RIGHT)   # a la derecha al medio
+frame.pack(anchor=SE)    # sudeste, abajo a la derecha
 
 root.config(cursor='arrow')
 root.config(bg='blue')
