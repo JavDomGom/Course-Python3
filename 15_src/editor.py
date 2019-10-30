@@ -34,14 +34,30 @@ def abrir():
 def guardar():
     mensaje.set('Guardar fichero')
     if ruta != '':
-        contenido = texto.get(1.0, 'end')
+        contenido = texto.get(1.0, 'end-1c')
         fichero = open(ruta, 'w+')
         fichero.write(contenido)
         fichero.close()
         mensaje.set('Fichero guardado con éxito')
+        root.title(ruta + ' - Mi editor de texto')
+    else:
+        guardar_como()
 
 def guardar_como():
+    global ruta
     mensaje.set('Guardar fichero como')
+    fichero = FileDialog.asksaveasfile(title='Guardar fichero', mode='w', defaultextension='.txt')
+    if fichero is not None:
+        ruta = fichero.name
+        contenido = texto.get(1.0, 'end-1c')
+        fichero = open(ruta, 'w+')
+        fichero.write(contenido)
+        fichero.close()
+        mensaje.set('Fichero guardado con éxito')
+        root.title(ruta + ' - Mi editor de texto')
+    else:
+        mensaje.set('Guardado cancelado')
+        ruta = ''
 
 # Configuración de la raíz.
 root = Tk()
